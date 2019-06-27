@@ -1,0 +1,1136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
+  <component name="AvailableLibraryUpdateStorage">
+    <library-updates>
+      <library-update>
+        <group-id>androidx.appcompat</group-id>
+        <name>appcompat</name>
+        <version>1.1.0-beta01</version>
+        <repository>Google</repository>
+      </library-update>
+    </library-updates>
+    <last-search-timestamp>1561606525476</last-search-timestamp>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="9cea94cd-36e7-4b4d-931d-55c111ef602c" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="239">
+              <caret line="48" column="66" lean-forward="true" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/FileDownloadUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="163">
+              <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>SocketException</find>
+      <find>setRequestError</find>
+      <find>OkLogger</find>
+      <find>context</find>
+      <find>isCall</find>
+      <find>listener</find>
+      <find>SEGMENT_SIZE</find>
+    </findStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/RequestConfig.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/request/OnRequestFailureListener.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/request/OnRequestListener.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/request/OnRequestListenerManager.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/request/OnRequestSucceed.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/request/OnRequestSucceedListener.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnProgressListener.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/Logger.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/interior/SimperLogger.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/request/OnRequestListenerGroup.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/interior/Logger.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/request/OnRequestLogShow.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/event/OnEventChainLogShow.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/interior/SimpleLogger.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnRequestLogShow.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnRequestListener.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnRequestSucceedListener.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnRequestStartListener.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnRequestEndListener.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnRequestListenerGroup.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/RequestListenerGroup.java" />
+        <option value="D:/HashMap.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/exception/MsgException.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/SchedulerManager.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/RxSchedulerManager.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/exception/RequestException.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/ResponseTransformer.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/app/App.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/api/BaseModelService.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/OkHttpClientHelper.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/interior/OnInitOkHttpClientListener.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/RequestChainConfig.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/interior/LogInterceptor.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/ApiHelper.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/api/ApiManager.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/api/model/ModelWeatherList.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/api/ApiService.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/RequestEvent.java" />
+        <option value="$PROJECT_DIR$/Library/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/api/listener/OnRequestShowDialog.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/BaseFileUploadEvent.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/FileDownloadEvent.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/tEST.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/FileUploadEvent.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/body/FileUploadProgressRequestBody.java" />
+        <option value="$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/FileDownloadUtils.java" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="246" />
+    <option name="width" value="1224" />
+    <option name="height" value="833" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="requestchain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="requestchain" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="requestchain" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="requestchain" type="462c0819:PsiDirectoryNode" />
+              <item name="body" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="RequestChain" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="Library" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="requestchain" type="462c0819:PsiDirectoryNode" />
+              <item name="utils" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Gradle: com.squareup.okio:okio:1.15.0@jar" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Gradle: com.squareup.okio:okio:1.15.0@jar" type="70bed36:NamedLibraryElementNode" />
+              <item name="okio-1.15.0.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="RequestChain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Gradle: com.squareup.okio:okio:1.15.0@jar" type="70bed36:NamedLibraryElementNode" />
+              <item name="okio-1.15.0.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="okio" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DEBUGGABLE_DEVICE" value="vivo-vivo_x21a-192.168.0.123:5555" />
+    <property name="DEBUGGABLE_PROCESS" value="support.lfp.requestchain.demo" />
+    <property name="DEBUGGER_ID" value="Auto" />
+    <property name="SHOW_ALL_PROCESSES" value="true" />
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="device.picker.selection" value="192.168.0.116:5555" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../EventChain" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+  </component>
+  <component name="PsdUISettings">
+    <option name="MODULE_TAB" value="Properties" />
+    <option name="LAST_EDITED_SIGNING_CONFIG" value="debug" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="support.lfp.requestchain" />
+      <recent name="support.lfp.requestchain.interior" />
+      <recent name="support.lfp.requestchain.listener" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\project_github\My\RequestChain\app\src\main\java\support\lfp\requestchain\api" />
+      <recent name="D:\project_github\My\RequestChain\Library\src\main\java\support\lfp\requestchain\utils" />
+      <recent name="D:\project_github\My\RequestChain\Library\src\main\java\support\lfp\requestchain" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Android App.app">
+    <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
+      <module name="app" />
+      <option name="DEPLOY" value="true" />
+      <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />
+      <option name="DEPLOY_AS_INSTANT" value="false" />
+      <option name="ARTIFACT_NAME" value="" />
+      <option name="PM_INSTALL_OPTIONS" value="" />
+      <option name="DYNAMIC_FEATURES_DISABLED_LIST" value="" />
+      <option name="ACTIVITY_EXTRA_FLAGS" value="" />
+      <option name="MODE" value="default_activity" />
+      <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
+      <option name="SKIP_NOOP_APK_INSTALLATIONS" value="true" />
+      <option name="FORCE_STOP_RUNNING_APP" value="true" />
+      <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
+      <option name="PREFERRED_AVD" value="" />
+      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
+      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
+      <option name="DEBUGGER_TYPE" value="Auto" />
+      <Auto>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Auto>
+      <Hybrid>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Hybrid>
+      <Java />
+      <Native>
+        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
+        <option name="SHOW_STATIC_VARS" value="true" />
+        <option name="WORKING_DIR" value="" />
+        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
+        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
+      </Native>
+      <Profilers>
+        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
+        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Sample Java Methods" />
+      </Profilers>
+      <option name="DEEP_LINK" value="" />
+      <option name="ACTIVITY_CLASS" value="" />
+      <method v="2">
+        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="tEST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="support.lfp.requestchain.tEST" />
+      <module name="app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="support.lfp.requestchain.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.tEST" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9cea94cd-36e7-4b4d-931d-55c111ef602c" name="Default Changelist" comment="" />
+      <created>1561527564198</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1561527564198</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" visible="true" weight="0.25737265" />
+      <window_info id="Structure" side_tool="true" />
+      <window_info id="Build Variants" side_tool="true" />
+      <window_info id="Image Layers" />
+      <window_info id="Designer" />
+      <window_info id="Resources Explorer" />
+      <window_info id="Capture Tool" />
+      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Run" weight="0.32956153" />
+      <window_info anchor="bottom" id="Logcat" weight="0.5473833" />
+      <window_info anchor="bottom" id="Version Control" />
+      <window_info anchor="bottom" id="TODO" />
+      <window_info anchor="bottom" id="Android Profiler" weight="0.55021214" />
+      <window_info anchor="bottom" id="Debug" weight="0.45544556" />
+      <window_info anchor="bottom" id="Terminal" weight="0.32956153" />
+      <window_info anchor="bottom" id="Event Log" sideWeight="0.50067025" side_tool="true" weight="0.32956153" />
+      <window_info anchor="bottom" id="Gradle View" />
+      <window_info anchor="bottom" id="Build" sideWeight="0.49932975" weight="0.58698726" />
+      <window_info anchor="bottom" id="Find" />
+      <window_info anchor="right" id="Device File Explorer" side_tool="true" />
+      <window_info anchor="right" id="Capture Analysis" />
+      <window_info anchor="right" id="Gradle" />
+      <window_info anchor="right" id="Theme Preview" />
+      <window_info anchor="right" id="Hierarchy" weight="0.3297587" />
+      <window_info anchor="right" id="Palette&#9;" />
+      <window_info anchor="right" id="Preview" weight="0.3297587" />
+    </layout>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/OkHttpClientHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="13" lean-forward="true" selection-start-line="13" selection-end-line="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/RequestChainConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="524">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+          <folding>
+            <element signature="docComment;class#RequestChainConfig#0" />
+            <element signature="docComment;method#setLogger#0;class#RequestChainConfig#0" />
+            <element signature="docComment;method#getLogger#0;class#RequestChainConfig#0" />
+            <element signature="method#getLogger#0;class#RequestChainConfig#0" />
+            <element signature="docComment;method#isDebug#0;class#RequestChainConfig#0" />
+            <element signature="docComment;method#setDebug#0;class#RequestChainConfig#0" />
+            <element signature="docComment;class#NullLogger#0;class#RequestChainConfig#0" />
+            <element signature="class#NullLogger#0;class#RequestChainConfig#0" />
+            <element signature="method#i#0;class#NullLogger#0;class#RequestChainConfig#0" />
+            <element signature="method#e#0;class#NullLogger#0;class#RequestChainConfig#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/exception/MsgException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="2" lean-forward="true" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+          <folding>
+            <element signature="e#247#248#0" expanded="true" />
+            <element signature="e#277#278#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/android.jar!/java/util/logging/Logger.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="418">
+          <caret line="30" column="25" selection-start-line="30" selection-start-column="25" selection-end-line="30" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/interior/LogInterceptor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="49" column="36" lean-forward="true" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1258#1259#0" expanded="true" />
+            <element signature="e#1304#1305#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/android.jar!/java/net/HttpURLConnection.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="45" column="28" selection-start-line="45" selection-start-column="28" selection-end-line="45" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.5.0/5c17035548a41ec60f00291163d36596a23ddd1a/retrofit-2.5.0-sources.jar!/retrofit2/Retrofit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="61" lean-forward="true" selection-start-line="61" selection-end-line="61" />
+          <folding>
+            <element signature="docComment;class#Retrofit#0" />
+            <element signature="method#Retrofit#0;class#Retrofit#0" />
+            <element signature="docComment;method#create#0;class#Retrofit#0" />
+            <element signature="method#create#0;class#Retrofit#0" />
+            <element signature="e#5803#5849#1" />
+            <element signature="class#5954:6689" />
+            <element signature="method#invoke#0;class#5954:6689" />
+            <element signature="e#6371#6434#1" />
+            <element signature="e#6485#6581#1" />
+            <element signature="method#eagerlyValidateMethods#0;class#Retrofit#0" />
+            <element signature="e#6850#6947#1" />
+            <element signature="e#6897#6941#1" />
+            <element signature="method#loadServiceMethod#0;class#Retrofit#0" />
+            <element signature="e#7147#7348#0" />
+            <element signature="e#7222#7342#1" />
+            <element signature="docComment;method#callFactory#0;class#Retrofit#0" />
+            <element signature="docComment;method#baseUrl#0;class#Retrofit#0" />
+            <element signature="docComment;method#callAdapterFactories#0;class#Retrofit#0" />
+            <element signature="docComment;method#callAdapter#0;class#Retrofit#0" />
+            <element signature="method#callAdapter#0;class#Retrofit#0" />
+            <element signature="docComment;method#nextCallAdapter#0;class#Retrofit#0" />
+            <element signature="method#nextCallAdapter#0;class#Retrofit#0" />
+            <element signature="e#8946#9112#1" />
+            <element signature="e#9073#9106#1" />
+            <element signature="e#9276#9487#1" />
+            <element signature="e#9352#9453#1" />
+            <element signature="e#9597#9694#1" />
+            <element signature="docComment;method#converterFactories#0;class#Retrofit#0" />
+            <element signature="docComment;method#requestBodyConverter#0;class#Retrofit#0" />
+            <element signature="method#requestBodyConverter#0;class#Retrofit#0" />
+            <element signature="docComment;method#nextRequestBodyConverter#0;class#Retrofit#0" />
+            <element signature="method#nextRequestBodyConverter#0;class#Retrofit#0" />
+            <element signature="e#11457#11788#1" />
+            <element signature="e#11686#11782#1" />
+            <element signature="e#11955#12164#1" />
+            <element signature="e#12031#12130#1" />
+            <element signature="e#12272#12367#1" />
+            <element signature="docComment;method#responseBodyConverter#0;class#Retrofit#0" />
+            <element signature="method#responseBodyConverter#0;class#Retrofit#0" />
+            <element signature="docComment;method#nextResponseBodyConverter#0;class#Retrofit#0" />
+            <element signature="method#nextResponseBodyConverter#0;class#Retrofit#0" />
+            <element signature="e#13490#13753#1" />
+            <element signature="e#13650#13747#1" />
+            <element signature="e#13921#14130#1" />
+            <element signature="e#13997#14096#1" />
+            <element signature="e#14238#14333#1" />
+            <element signature="docComment;method#stringConverter#0;class#Retrofit#0" />
+            <element signature="method#stringConverter#0;class#Retrofit#0" />
+            <element signature="e#14804#15049#1" />
+            <element signature="e#14952#15043#1" />
+            <element signature="e#15055#15131#0" />
+            <element signature="docComment;method#callbackExecutor#0;class#Retrofit#0" />
+            <element signature="docComment;class#Builder#0;class#Retrofit#0" />
+            <element signature="class#Builder#0;class#Retrofit#0" />
+            <element signature="method#Builder#2;class#Builder#0;class#Retrofit#0" />
+            <element signature="e#16697#16774#1" />
+            <element signature="e#17003#17084#1" />
+            <element signature="docComment;method#client#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="method#client#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="docComment;method#callFactory#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="method#callFactory#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="docComment;method#baseUrl#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="method#baseUrl#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="docComment;method#baseUrl#1;class#Builder#0;class#Retrofit#0" />
+            <element signature="method#baseUrl#1;class#Builder#0;class#Retrofit#0" />
+            <element signature="e#20211#20301#1" />
+            <element signature="docComment;method#addConverterFactory#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="method#addConverterFactory#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="docComment;method#addCallAdapterFactory#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="method#addCallAdapterFactory#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="docComment;method#callbackExecutor#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="method#callbackExecutor#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="docComment;method#callAdapterFactories#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="docComment;method#converterFactories#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="docComment;method#validateEagerly#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="method#validateEagerly#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="docComment;method#build#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="method#build#0;class#Builder#0;class#Retrofit#0" />
+            <element signature="e#22279#22351#1" />
+            <element signature="e#22443#22494#1" />
+            <element signature="e#22589#22661#1" />
+            <element signature="e#23150#23241#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/ApiHelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="69" column="24" selection-start-line="69" selection-start-column="24" selection-end-line="69" selection-end-column="24" />
+          <folding>
+            <element signature="docComment;class#ApiHelper#0" />
+            <element signature="method#getOkHttpClient#0;class#ApiHelper#0" />
+            <element signature="e#415#716#1" />
+            <element signature="e#771#990#1" />
+            <element signature="docComment;method#getRetrofit#0;class#ApiHelper#0" />
+            <element signature="method#buildRetrofit#0;class#ApiHelper#0" />
+            <element signature="e#1513#1548#1" />
+            <element signature="method#getCacheModel#0;class#ApiHelper#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/api/ApiManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="39" lean-forward="true" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnRequestSucceedListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="25" column="18" lean-forward="true" selection-start-line="25" selection-start-column="18" selection-end-line="25" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.1.0-alpha03/ff1470ebad448355d3722c637c85d5174b584f38/lifecycle-common-2.1.0-alpha03-sources.jar!/androidx/lifecycle/LifecycleEventObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="31" column="39" selection-start-line="31" selection-start-column="17" selection-end-line="31" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.1.0-alpha03/ff1470ebad448355d3722c637c85d5174b584f38/lifecycle-common-2.1.0-alpha03-sources.jar!/androidx/lifecycle/GenericLifecycleObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="28" column="64" selection-start-line="28" selection-start-column="64" selection-end-line="28" selection-end-column="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ftmtshuashua/EventChain/1.1.3/c5eb51e73e4d450d9aa131e826c82fcc8d3ddf9f/EventChain-1.1.3-sources.jar!/com/lfp/eventtree/EventChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="32" column="43" selection-start-line="32" selection-start-column="43" selection-end-line="32" selection-end-column="43" />
+          <folding>
+            <element signature="docComment;class#EventChain#0" />
+            <element signature="e#323#541#0" />
+            <element signature="e#458#535#1" />
+            <element signature="e#547#613#0" />
+            <element signature="e#890#935#1" />
+            <element signature="e#1048#1119#0" />
+            <element signature="e#1048#1261#0" />
+            <element signature="e#1267#1321#0" />
+            <element signature="e#1392#1446#0" />
+            <element signature="e#1519#1567#0" />
+            <element signature="e#1519#1746#0" />
+            <element signature="e#1676#1718#1" />
+            <element signature="e#1752#1800#0" />
+            <element signature="e#1752#1975#0" />
+            <element signature="e#1907#1948#1" />
+            <element signature="e#1981#2067#0" />
+            <element signature="e#1981#2245#0" />
+            <element signature="e#2251#2344#0" />
+            <element signature="e#2482#2524#0" />
+            <element signature="e#2561#2602#0" />
+            <element signature="e#2661#2690#0" />
+            <element signature="e#2661#3100#0" />
+            <element signature="e#2789#3050#1" />
+            <element signature="e#3056#3094#1" />
+            <element signature="e#3106#3471#0" />
+            <element signature="e#3336#3465#1" />
+            <element signature="e#3354#3393#0" />
+            <element signature="e#3414#3455#0" />
+            <element signature="e#3478#3527#0" />
+            <element signature="e#3478#3985#0" />
+            <element signature="e#3767#3979#1" />
+            <element signature="e#3844#3887#1" />
+            <element signature="e#3893#3969#1" />
+            <element signature="e#3991#4032#0" />
+            <element signature="e#3991#4312#0" />
+            <element signature="e#4318#4348#0" />
+            <element signature="e#4318#4386#0" />
+            <element signature="e#4469#4504#0" />
+            <element signature="e#4469#4854#0" />
+            <element signature="e#4597#4805#1" />
+            <element signature="e#4860#4906#0" />
+            <element signature="e#4860#5030#0" />
+            <element signature="e#5036#5065#0" />
+            <element signature="e#5147#5179#0" />
+            <element signature="e#5259#5290#0" />
+            <element signature="e#5612#5684#0" />
+            <element signature="e#5740#5765#0" />
+            <element signature="e#5740#6401#0" />
+            <element signature="e#5817#5859#0" />
+            <element signature="e#6029#6066#0" />
+            <element signature="e#6153#6190#0" />
+            <element signature="e#6281#6316#0" />
+            <element signature="e#6639#6680#0" />
+            <element signature="e#6639#7085#0" />
+            <element signature="e#7091#7131#0" />
+            <element signature="e#7292#7320#0" />
+            <element signature="e#7487#7616#0" />
+            <element signature="e#7487#7752#0" />
+            <element signature="e#7758#7784#0" />
+            <element signature="e#7758#8029#0" />
+            <element signature="e#8035#8061#0" />
+            <element signature="e#8035#8248#0" />
+            <element signature="e#8484#8600#0" />
+            <element signature="e#8685#8806#0" />
+            <element signature="e#8942#9217#0" />
+            <element signature="e#9314#9430#0" />
+            <element signature="e#9543#9673#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.gradle/wrapper/dists/gradle-5.1.1-all/97z1ksx6lirer3kbvdnh7jtjg/gradle-5.1.1/src/base-services/org/gradle/api/JavaVersion.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="29" column="43" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b0f4fab05574ec151e50c7d1153c3f3/res/drawable-xxxhdpi-v4/design_ic_visibility.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.material/material/1.1.0-alpha06/12595a96a8c90f5504603f0225b5781d1167fe92/material-1.1.0-alpha06-sources.jar!/com/google/android/material/snackbar/Snackbar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-115">
+          <caret line="60" column="13" selection-start-line="60" selection-start-column="13" selection-end-line="60" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b0f4fab05574ec151e50c7d1153c3f3/res/values/values.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1419">
+          <caret line="1165" column="17" selection-start-line="1165" selection-start-column="17" selection-end-line="1165" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9b0f4fab05574ec151e50c7d1153c3f3/res/layout/design_bottom_navigation_item.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="21" column="55" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/exception/RequestException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="29" column="26" lean-forward="true" selection-start-line="29" selection-start-column="26" selection-end-line="29" selection-end-column="26" />
+          <folding>
+            <element signature="docComment;class#RequestException#0" />
+            <element signature="method#RequestException#1;class#RequestException#0" />
+            <element signature="method#RequestException#2;class#RequestException#0" />
+            <element signature="method#RequestException#3;class#RequestException#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="372">
+          <caret line="29" column="42" lean-forward="true" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/ResponseTransformer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="136" column="39" lean-forward="true" selection-start-line="136" selection-start-column="39" selection-end-line="136" selection-end-column="39" />
+          <folding>
+            <element signature="docComment;class#ResponseTransformer#0" />
+            <element signature="docComment;method#handle#0;class#ResponseTransformer#0" />
+            <element signature="method#handle#0;class#ResponseTransformer#0" />
+            <element signature="docComment;method#transformerException#0;class#ResponseTransformer#0" />
+            <element signature="class#IResponseException#0;class#ResponseTransformer#0" />
+            <element signature="docComment;method#isSucceed#0;class#IResponseException#0;class#ResponseTransformer#0" />
+            <element signature="docComment;method#getCode#0;class#IResponseException#0;class#ResponseTransformer#0" />
+            <element signature="docComment;method#getMsg#0;class#IResponseException#0;class#ResponseTransformer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/api/model/ModelWeatherList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="12" column="29" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="29" />
+          <folding>
+            <element signature="docComment;class#ModelWeatherList#0" />
+            <element signature="class#result#0;class#ModelWeatherList#0" />
+            <element signature="class#precipitation#0;class#Result#0;class#ModelWeatherList#0" />
+            <element signature="class#Precipitation#0;class#Precipitation#0;class#Result#0;class#ModelWeatherList#0" />
+            <element signature="class#Precipitation#1;class#Precipitation#0;class#Result#0;class#ModelWeatherList#0" />
+            <element signature="class#Ultraviolet#0;class#Result#0;class#ModelWeatherList#0" />
+            <element signature="class#Ultraviolet#1;class#Result#0;class#ModelWeatherList#0" />
+            <element signature="class#Comfort#1;class#Result#0;class#ModelWeatherList#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.0.0/cb4562c8927ab69f2a8ef49267b90753207df0c3/lifecycle-common-2.0.0-sources.jar!/androidx/lifecycle/LifecycleObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="25" column="29" selection-start-line="25" selection-start-column="29" selection-end-line="25" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.0.0/cb4562c8927ab69f2a8ef49267b90753207df0c3/lifecycle-common-2.0.0-sources.jar!/androidx/lifecycle/FullLifecycleObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="18" column="10" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.0.0/cb4562c8927ab69f2a8ef49267b90753207df0c3/lifecycle-common-2.0.0-sources.jar!/androidx/lifecycle/GenericLifecycleObserver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="26" column="41" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="41" />
+          <folding>
+            <element signature="e#834#879#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.lifecycle/lifecycle-common/2.0.0/cb4562c8927ab69f2a8ef49267b90753207df0c3/lifecycle-common-2.0.0-sources.jar!/androidx/lifecycle/Lifecycle.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="74" column="22" selection-start-line="74" selection-start-column="22" selection-end-line="74" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/api/ApiService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="31" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ftmtshuashua/EventChain/1.1.4/dec7cfd366babafd1b79c5d585845ab0d8590e0b/EventChain-1.1.4-sources.jar!/com/lfp/eventtree/EventChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/android.jar!/android/util/Log.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="62" column="22" selection-start-line="62" selection-start-column="22" selection-end-line="62" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="33" column="55" selection-start-line="33" selection-start-column="55" selection-end-line="33" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.ftmtshuashua/EventChain/1.1.5/146cbab8e188df2935eb723e264109e4d7d452e7/EventChain-1.1.5-sources.jar!/com/lfp/eventtree/EventChain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="58" column="13" lean-forward="true" selection-start-line="57" selection-start-column="55" selection-end-line="58" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/android.jar!/android/app/ProgressDialog.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/AppData/Local/Android/Sdk/platforms/android-29/android.jar!/android/app/Dialog.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="227">
+          <caret line="77" column="16" selection-start-line="77" selection-start-column="16" selection-end-line="77" selection-end-column="16" />
+          <folding>
+            <element signature="e#2376#2377#0" expanded="true" />
+            <element signature="e#2427#2428#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/com.mt.mtxx.mtxx8.0.0.1bb.apk">
+      <provider selected="true" editor-type-id="apk-viewer" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/RequestEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="160" column="51" selection-start-line="160" selection-start-column="51" selection-end-line="160" selection-end-column="51" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="docComment;class#RequestEvent#0" />
+            <element signature="e#1637#1638#0" expanded="true" />
+            <element signature="e#1693#1694#0" expanded="true" />
+            <element signature="docComment;method#setDebugRequestError#0;class#RequestEvent#0" />
+            <element signature="method#setDebugRequestError#0;class#RequestEvent#0" />
+            <element signature="method#addOnRequestListener#0;class#RequestEvent#0" />
+            <element signature="method#removeRequestListener#0;class#RequestEvent#0" />
+            <element signature="method#interrupt#0;class#RequestEvent#0" />
+            <element signature="docComment;method#setRequestStart#0;class#RequestEvent#0" />
+            <element signature="docComment;method#setRequestSucceed#0;class#RequestEvent#0" />
+            <element signature="docComment;method#setRequestError#0;class#RequestEvent#0" />
+            <element signature="method#setRequestError#0;class#RequestEvent#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/api/listener/OnRequestShowDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="31" lean-forward="true" selection-start-line="31" selection-end-line="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#482#483#0" expanded="true" />
+            <element signature="e#534#535#0" expanded="true" />
+            <element signature="e#667#668#0" expanded="true" />
+            <element signature="e#703#704#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnEventChainLogShow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="37">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnRequestLogShow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding>
+            <element signature="docComment;class#OnRequestLogShow#0" />
+            <element signature="method#OnRequestLogShow#0;class#OnRequestLogShow#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="7" column="85" selection-start-line="7" selection-start-column="85" selection-end-line="7" selection-end-column="85" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.12.0/2647551116856a6403d1a21e236837a7501c08a8/okhttp-3.12.0-sources.jar!/okhttp3/MultipartBody.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="246" column="23" selection-start-line="246" selection-start-column="23" selection-end-line="246" selection-end-column="23" />
+          <folding>
+            <element signature="docComment;class#MultipartBody#0" />
+            <element signature="docComment;field#MIXED#0;class#MultipartBody#0" />
+            <element signature="docComment;field#ALTERNATIVE#0;class#MultipartBody#0" />
+            <element signature="docComment;field#DIGEST#0;class#MultipartBody#0" />
+            <element signature="docComment;field#PARALLEL#0;class#MultipartBody#0" />
+            <element signature="docComment;field#FORM#0;class#MultipartBody#0" />
+            <element signature="method#MultipartBody#0;class#MultipartBody#0" />
+            <element signature="docComment;method#size#0;class#MultipartBody#0" />
+            <element signature="docComment;method#contentType#0;class#MultipartBody#0" />
+            <element signature="method#contentLength#0;class#MultipartBody#0" />
+            <element signature="method#writeTo#0;class#MultipartBody#0" />
+            <element signature="docComment;method#writeOrCountBytes#0;class#MultipartBody#0" />
+            <element signature="method#writeOrCountBytes#0;class#MultipartBody#0" />
+            <element signature="e#4589#4641#1" />
+            <element signature="e#4709#5913#1" />
+            <element signature="e#4926#5169#1" />
+            <element signature="e#5004#5161#1" />
+            <element signature="e#5252#5375#1" />
+            <element signature="e#5457#5580#1" />
+            <element signature="e#5602#5745#1" />
+            <element signature="e#5794#5839#1" />
+            <element signature="e#5845#5882#1" />
+            <element signature="e#6036#6117#1" />
+            <element signature="docComment;method#appendQuotedString#0;class#MultipartBody#0" />
+            <element signature="method#appendQuotedString#0;class#MultipartBody#0" />
+            <element signature="e#6901#7233#1" />
+            <element signature="e#6952#7227#0" />
+            <element signature="method#create#1;class#Part#0;class#MultipartBody#0" />
+            <element signature="e#7508#7573#1" />
+            <element signature="e#7640#7728#1" />
+            <element signature="e#7797#7887#1" />
+            <element signature="method#createFormData#0;class#Part#0;class#MultipartBody#0" />
+            <element signature="e#8203#8268#1" />
+            <element signature="e#8416#8519#1" />
+            <element signature="method#Part#0;class#Part#0;class#MultipartBody#0" />
+            <element signature="class#Builder#0;class#MultipartBody#0" />
+            <element signature="docComment;method#setType#0;class#Builder#0;class#MultipartBody#0" />
+            <element signature="method#setType#0;class#Builder#0;class#MultipartBody#0" />
+            <element signature="e#9540#9605#1" />
+            <element signature="e#9650#9727#1" />
+            <element signature="docComment;method#addPart#0;class#Builder#0;class#MultipartBody#0" />
+            <element signature="docComment;method#addPart#1;class#Builder#0;class#MultipartBody#0" />
+            <element signature="method#addPart#1;class#Builder#0;class#MultipartBody#0" />
+            <element signature="docComment;method#addFormDataPart#0;class#Builder#0;class#MultipartBody#0" />
+            <element signature="method#addFormDataPart#0;class#Builder#0;class#MultipartBody#0" />
+            <element signature="docComment;method#addFormDataPart#1;class#Builder#0;class#MultipartBody#0" />
+            <element signature="method#addFormDataPart#1;class#Builder#0;class#MultipartBody#0" />
+            <element signature="docComment;method#addPart#2;class#Builder#0;class#MultipartBody#0" />
+            <element signature="method#addPart#2;class#Builder#0;class#MultipartBody#0" />
+            <element signature="docComment;method#build#0;class#Builder#0;class#MultipartBody#0" />
+            <element signature="method#build#0;class#Builder#0;class#MultipartBody#0" />
+            <element signature="e#10777#10874#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/tEST.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+          <folding>
+            <element signature="docComment;class#tEST#0" />
+            <element signature="e#308#309#0" expanded="true" />
+            <element signature="e#343#344#0" expanded="true" />
+            <element signature="e#374#375#0" expanded="true" />
+            <element signature="e#409#410#0" expanded="true" />
+            <element signature="e#595#596#0" expanded="true" />
+            <element signature="e#630#631#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/FileDownloadEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="6" column="2" selection-start-line="6" selection-start-column="2" selection-end-line="6" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.15.0/5667938926bdda03add0eac8c522164ce4180e5e/okio-1.15.0-sources.jar!/okio/Segment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="36" column="27" selection-start-line="36" selection-start-column="27" selection-end-line="36" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/body/FileUploadProgressRequestBody.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="28" column="41" lean-forward="true" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+          <folding>
+            <element signature="method#FileUploadProgressRequestBody#0;class#FileUploadProgressRequestBody#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/FileUploadEvent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="429">
+          <caret line="51" column="81" lean-forward="true" selection-start-line="51" selection-start-column="81" selection-end-line="51" selection-end-column="81" />
+          <folding>
+            <element signature="docComment;class#BaseFileUploadEvent#0" />
+            <element signature="method#BaseFileUploadEvent#0;class#BaseFileUploadEvent#0" />
+            <element signature="docComment;method#setProgressListener#0;class#BaseFileUploadEvent#0" />
+            <element signature="docComment;class#FileUploadProgressRequestBody#0;class#BaseFileUploadEvent#0" />
+            <element signature="e#2538#2571#0" />
+            <element signature="e#2888#3161#1" />
+            <element signature="e#2983#3048#1" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="18" lean-forward="true" selection-start-line="18" selection-end-line="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/support/lfp/requestchain/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="48" column="66" lean-forward="true" selection-start-line="48" selection-start-column="66" selection-end-line="48" selection-end-column="66" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.12.0/2647551116856a6403d1a21e236837a7501c08a8/okhttp-3.12.0-sources.jar!/okhttp3/ResponseBody.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1">
+          <caret line="100" column="51" lean-forward="true" selection-start-line="100" selection-start-column="51" selection-end-line="100" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/listener/OnProgressListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Library/src/main/java/support/lfp/requestchain/utils/FileDownloadUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="163">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
