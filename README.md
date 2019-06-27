@@ -11,9 +11,9 @@
 
 
 ## 使用
-使用方式参考：配合Java8的lambda语法使用逻辑更清晰
-![MainActivity](https://github.com/ftmtshuashua/RequestChain/blob/master/app/src/main/java/support/lfp/requestchain/MainActivity.java)
-
+使用方式参考：
+[MainActivity.java](https://github.com/ftmtshuashua/RequestChain/blob/master/app/src/main/java/support/lfp/requestchain/MainActivity.java)
+(配合Java8的lambda语法使用逻辑更清晰)
 
 ## 配置依赖
 
