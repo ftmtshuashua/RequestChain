@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.ftmtshuashua:EventChain:1.1.5@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/136bc5522d9a98aec465a3718dfb7727/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/136bc5522d9a98aec465a3718dfb7727/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/EventChain-1.1.5.aar/2f188b2171d24eefc364b3111f36c358/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/EventChain-1.1.5.aar/2f188b2171d24eefc364b3111f36c358/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
