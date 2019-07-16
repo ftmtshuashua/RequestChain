@@ -1,6 +1,8 @@
 package support.lfp.requestchain;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,31 +10,35 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.gson.Gson;
 
 import support.lfp.requestchain.api.ApiManager;
-import support.lfp.requestchain.api.listener.OnRequestShowDialog;
 import support.lfp.requestchain.api.model.ModelWeatherList;
 import support.lfp.requestchain.demo.R;
 import support.lfp.requestchain.listener.OnRequestSucceedListener;
+import support.lfp.requestchain.simple.OnEventDelayWaitBar;
 
 public class MainActivity extends AppCompatActivity {
 
 
     TextView mTV_Text;
+    private final Handler mHandler = new Handler(Looper.getMainLooper());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mTV_Text = findViewById(R.id.view_Text);
+        mTV_Text.setOnClickListener(view -> getWeatherList());
+
 
         getWeatherList();
     }
 
     /*获得气象列表数据*/
     void getWeatherList() {
+        mTV_Text.setText("正在加载..");
         new RequestEvent<>(ApiManager.getApi().getWeatherList(), getLifecycle())
-                .setDebugRequestDelay(1000) // 延时1000毫秒之后发起该请求
+                .setDebugRequestDelay((long) (Math.random() * 1000)) // 延时1000毫秒之后发起该请求
                 .addOnRequestListener((OnRequestSucceedListener<ModelWeatherList>) s -> mTV_Text.setText(new Gson().toJson(s))) //请求成功监听
-                .addOnEventListener(new OnRequestShowDialog(this)) //全局事件监听
+                .addOnEventListener(new OnEventDelayWaitBar(this).setShowThrowable(true)) /*请求进度提示监听*/
                 .start();
     }
 
@@ -44,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
                                 .addOnRequestListener((OnRequestSucceedListener<ModelWeatherList>) s -> mTV_Text.setText(new Gson().toJson(s)))
                               )
                            )
-                .addOnEventListener(new OnRequestShowDialog(this)) //全局事件监听
+                .addOnEventListener(new OnEventDelayWaitBar(this)) //全局事件监听
                 .start();
     }
 
@@ -56,7 +62,9 @@ public class MainActivity extends AppCompatActivity {
                 new RequestEvent<>(ApiManager.getApi().getWeatherList(), getLifecycle())
                         .addOnRequestListener((OnRequestSucceedListener<ModelWeatherList>) s -> mTV_Text.setText(new Gson().toJson(s)))
                            )
-                .addOnEventListener(new OnRequestShowDialog(this)) //全局事件监听
+                .addOnEventListener(new OnEventDelayWaitBar(this)) //全局事件监听
                 .start();
     }
+
+
 }

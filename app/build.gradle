@@ -14,11 +14,13 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion = '29.0.0'
 }
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+//    implementation 'com.github.ftmtshuashua:RequestChain:1.0.2'
 
     implementation project(':Library')
 

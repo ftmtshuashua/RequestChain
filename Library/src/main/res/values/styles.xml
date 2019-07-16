@@ -1,0 +1,19 @@
+<resources>
+
+
+    <!-- 无边框 Dialog  Holo.-->
+    <style name="BBarDialogStyle" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item> <!-- 在中间弹框、背后有遮罩的效果 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowNoTitle">true</item><!--隐藏标题栏-->
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent
+        </item><!--这儿也很重要啊，我这儿用了一张透明的.9.png的图，当然用#00000000也是可以的，否则的话这儿出来后有一个黑色的背景-->
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.318</item>
+        <item name="android:windowContentOverlay">@null</item>-->
+    </style>
+
+
+</resources>

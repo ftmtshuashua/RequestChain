@@ -18,7 +18,6 @@ public class App  extends Application {
     public void onCreate() {
         super.onCreate();
         RequestChainConfig.setDebug(true);
-//        RequestChainConfig.setLogger();
 
     }
 }
