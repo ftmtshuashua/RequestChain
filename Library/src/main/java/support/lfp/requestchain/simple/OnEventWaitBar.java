@@ -2,6 +2,7 @@ package support.lfp.requestchain.simple;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.lfp.eventtree.OnEventListener;
@@ -72,7 +73,12 @@ public class OnEventWaitBar<T> implements OnEventListener {
      * @param e       异常信息
      */
     public void onShowThrowable(Context context, Throwable e) {
-        if (e != null) Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        if (e != null) {
+            final String message = e.getMessage();
+            if (!TextUtils.isEmpty(message)) {
+                Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+            }
+        }
     }
 
 

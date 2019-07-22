@@ -15,8 +15,11 @@ public interface OnProgressListener {
     /**
      * 当进度发生变化的时候回调该方法
      *
-     * @param total    总进度
-     * @param progress 当前进度
+     * @param isComplete 进度达到100%
+     * @param total      总进度
+     * @param progress   当前进度
      */
-    void progress(long total, long progress);
+    void progress(boolean isComplete, long total, long progress);
+
+
 }

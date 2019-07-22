@@ -44,7 +44,7 @@ public class FileDownloadUtils {
                 byte[] fileReader = new byte[4096];  //设置每次读写的字节
                 long fileSize = body.contentLength();
                 long fileSizeDownloaded = 0;
-                if (listener != null) listener.progress(fileSizeDownloaded, fileSize);
+                if (listener != null) listener.progress(false, fileSizeDownloaded, fileSize);
                 inputStream = body.byteStream();    //请求返回的字节流
                 outputStream = new FileOutputStream(futureStudioIconFile); //创建输出流
                 while (true) {   //进行读取操作
@@ -56,12 +56,12 @@ public class FileDownloadUtils {
                     outputStream.write(fileReader, 0, read);
                     fileSizeDownloaded += read;
 
-                    if (listener != null) listener.progress(fileSizeDownloaded, fileSize);
+                    if (listener != null) listener.progress(false, fileSizeDownloaded, fileSize);
                 }
-
                 //刷新
                 outputStream.flush();
-                if (listener != null) listener.progress(fileSize, fileSize);
+
+                if (listener != null) listener.progress(true, fileSize, fileSize);
                 return true;
             } catch (IOException e) {
                 return false;

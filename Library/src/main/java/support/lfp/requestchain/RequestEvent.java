@@ -40,20 +40,38 @@ public class RequestEvent<E> extends EventChain {
     boolean isCall = false;
     long debug_flag;//Debug 相关标记
 
+    /**
+     * 通过Retrofit2构建的Observable创建请求事件
+     *
+     * @param request 请求
+     */
     public RequestEvent(Observable<E> request) {
         this.request = request;
     }
 
+    /**
+     * 通过Retrofit2构建的Observable创建请求事件
+     *
+     * @param request   请求
+     * @param lifecycle Activity生命周期管理,该参数可以为空。当他不会空的时候，在Activity关闭的时候可以自动结束请求事件
+     */
     public RequestEvent(Observable<E> request, Lifecycle lifecycle) {
         this.request = request;
         if (lifecycle != null) setLifecycle(lifecycle);
     }
+
 
     public RequestEvent chain(RequestEvent chain) {
         return (RequestEvent) super.chain(chain);
     }
 
 
+    /**
+     * 设置生命周期管理 ， 在Activity关闭的时候可以自动结束请求事件
+     *
+     * @param lifecycle Activity 生命周期管理
+     * @return
+     */
     public RequestEvent<E> setLifecycle(final Lifecycle lifecycle) {
         if (mLifecycleObserver == null) {
             mLifecycleObserver = (source, event) -> {
@@ -69,6 +87,12 @@ public class RequestEvent<E> extends EventChain {
         return this;
     }
 
+    /**
+     * 设置请求事件的请求内容 , 该方法不可在已执行的请求事件调用
+     *
+     * @param request 具体的请求内容
+     * @return
+     */
     public RequestEvent<E> setRequest(Observable<E> request) {
         if (isCall()) throw new IllegalStateException("The request event is called!");
         this.request = request;
@@ -97,6 +121,12 @@ public class RequestEvent<E> extends EventChain {
     }
 
 
+    /**
+     * 添加请求事件监听
+     *
+     * @param l
+     * @return
+     */
     public RequestEvent<E> addOnRequestListener(OnRequestListener<? super E> l) {
         if (mOnRequestListenerManager == null)
             mOnRequestListenerManager = new RequestListenerGroup();
@@ -104,6 +134,12 @@ public class RequestEvent<E> extends EventChain {
         return this;
     }
 
+    /**
+     * 移除请求事件监听
+     *
+     * @param l
+     * @return
+     */
     public RequestEvent<E> removeRequestListener(OnRequestListener<? super E> l) {
         if (mOnRequestListenerManager != null) mOnRequestListenerManager.remove(l);
         return this;

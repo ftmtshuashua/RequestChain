@@ -74,8 +74,9 @@ public class FileUploadProgressRequestBody extends RequestBody {
                     RequestChainConfig.getLogger().i(msg);
                 }
 
-                if (this.listener != null) this.listener.progress(total, process);
+                if (this.listener != null) this.listener.progress(false, total, process);
             }
+            if (this.listener != null) this.listener.progress(true, total, total);
         } finally {
             try {
                 source.close();

@@ -1,5 +1,7 @@
 package support.lfp.requestchain.api.model;
 
+import support.lfp.requestchain.utils.ResponseTransformer;
+
 /**
  * <pre>
  * Tip:
@@ -10,7 +12,7 @@ package support.lfp.requestchain.api.model;
  * Created by LiFuPing on 2019/6/27 13:56
  * </pre>
  */
-public class ModelWeatherList {
+public class ModelWeatherList implements ResponseTransformer.IResponseException {
     String status;
     String lang;
     String unit;
@@ -20,6 +22,21 @@ public class ModelWeatherList {
     long tzshift;
     String api_version;
     Result result;
+
+    @Override
+    public boolean isSucceed() {
+        return false;
+    }
+
+    @Override
+    public int getCode() {
+        return 0;
+    }
+
+    @Override
+    public String getMsg() {
+        return null;
+    }
 
     public static final class Result {
         String status;

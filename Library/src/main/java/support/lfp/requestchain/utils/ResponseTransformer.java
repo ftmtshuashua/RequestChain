@@ -23,7 +23,7 @@ import support.lfp.requestchain.exception.RequestException;
 /**
  * <pre>
  * Tip:
- *      请求异常处理,发生异常的时候
+ *      请求异常处理,发生异常的时候.
  *
  * Function:
  *
@@ -69,16 +69,9 @@ public class ResponseTransformer {
         if (thr == null) return new RequestException("未知异常!", RequestException.NULL_CODE);
         if (thr instanceof RequestException) return (RequestException) thr;
 
-        if (thr instanceof MultiException) { /*并发事件抛出多个异常*/
+        if (thr instanceof MultiException) { /*并发事件抛出多个异常 - 取其中一个异常进行抛出*/
             MultiException e = (MultiException) thr;
-            int size = e.size();
-            if (size == 0) {
-                return new RequestException(e.getMessage(), e, RequestException.NULL_CODE);
-            } else if (size == 1) {
-                return transformerException(e.getFirst());
-            } else { /*多个异常*/
-
-            }
+            return transformerException(e.getFirst());
         } else if (thr instanceof retrofit2.HttpException) { /*网络错误*/
             retrofit2.HttpException exc = (retrofit2.HttpException) thr;
             final HttpCodeMsg byCode = HttpCodeMsg.findByCode(exc.code());
@@ -110,7 +103,6 @@ public class ResponseTransformer {
          * @return true:请求成功   false:请求失败
          */
         boolean isSucceed();
-
 
         /**
          * 获得回复编码
