@@ -188,8 +188,7 @@ public class RequestEvent<E> extends EventChain {
 
     /** 请求开始执行 */
     protected void setRequestStart() {
-        if (mOnRequestListenerManager != null)
-            mOnRequestListenerManager.onStart(this);
+        listenerStart();
     }
 
     /** 请求开始执行 */
@@ -198,25 +197,48 @@ public class RequestEvent<E> extends EventChain {
             setRequestError(new MsgException("Debug：强制抛出异常测试!"));
         } else {
             try { /* 捕获数据处理异常，在数据处理错误的时候不至于导致程序崩溃。 */
-                if (mOnRequestListenerManager != null) mOnRequestListenerManager.onSucceed(t);
+                listenerSucceed(t);
             } catch (Exception e) {
                 if (RequestChainConfig.isDebug()) e.printStackTrace();
                 setRequestError(e);
                 return;
             }
 
-            if (mOnRequestListenerManager != null) mOnRequestListenerManager.onEnd();
+            listenerEnd();
             next();
         }
     }
 
     /** 请求开始执行 */
     protected void setRequestError(Throwable throwable) {
-        if (mOnRequestListenerManager != null)
-            mOnRequestListenerManager.onFailure(throwable);
-        if (mOnRequestListenerManager != null) mOnRequestListenerManager.onEnd();
+        listenerFailure(throwable);
+        listenerEnd();
         error(throwable);
     }
 
+    private void listenerStart() {
+        if (RequestChainConfig.getGlobalRequestListener() != null)
+            RequestChainConfig.getGlobalRequestListener().onStart(this);
+        if (mOnRequestListenerManager != null)
+            mOnRequestListenerManager.onStart(this);
+    }
 
+    private void listenerSucceed(E t) {
+        if (RequestChainConfig.getGlobalRequestListener() != null)
+            RequestChainConfig.getGlobalRequestListener().onSucceed(t);
+        if (mOnRequestListenerManager != null) mOnRequestListenerManager.onSucceed(t);
+    }
+
+    private void listenerEnd() {
+        if (RequestChainConfig.getGlobalRequestListener() != null)
+            RequestChainConfig.getGlobalRequestListener().onEnd();
+        if (mOnRequestListenerManager != null) mOnRequestListenerManager.onEnd();
+    }
+
+    private void listenerFailure(Throwable throwable) {
+        if (RequestChainConfig.getGlobalRequestListener() != null)
+            RequestChainConfig.getGlobalRequestListener().onFailure(throwable);
+        if (mOnRequestListenerManager != null)
+            mOnRequestListenerManager.onFailure(throwable);
+    }
 }

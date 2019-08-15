@@ -5,6 +5,8 @@ import support.lfp.requestchain.interior.Logger;
 import support.lfp.requestchain.interior.OnOkHttpBuilder;
 import support.lfp.requestchain.interior.OnRetrofitBuilder;
 import support.lfp.requestchain.interior.SimpleLogger;
+import support.lfp.requestchain.listener.OnRequestListener;
+import support.lfp.requestchain.listener.RequestListenerGroup;
 
 /**
  * <pre>
@@ -23,6 +25,7 @@ public final class RequestChainConfig {
     static Logger mNullLogger = new NullLogger();
     static OnOkHttpBuilder mOnOkHttpBuilder;
     static OnRetrofitBuilder mOnRetrofitBuilder;
+    static RequestListenerGroup mGlobalRequestListener; /*全局请求监听器*/
 
 
     private RequestChainConfig() {}
@@ -61,6 +64,9 @@ public final class RequestChainConfig {
      */
     public static final OnOkHttpBuilder getOnOkHttpBuilder() {return mOnOkHttpBuilder;}
 
+
+    /*------------------------------- Log -----------------------------*/
+
     /***设置日志处理器*/
     public static final void setLogger(Logger logger) {
         mLogger = logger;
@@ -69,7 +75,7 @@ public final class RequestChainConfig {
 
     /***获得日志处理器*/
     public static final Logger getLogger() {
-        if (isDebug()) return mNullLogger;
+        if (!isDebug()) return mNullLogger;
         return mLogger;
     }
 
@@ -101,4 +107,37 @@ public final class RequestChainConfig {
 
         }
     }
+
+
+    /*------------------------------- Log -----------------------------*/
+
+
+    /**
+     * 添加全局请求事件监听 ,所求请求事件
+     *
+     * @param l
+     * @return
+     */
+    public static void addOnRequestListenerGlobal(OnRequestListener<?> l) {
+        if (mGlobalRequestListener == null)
+            mGlobalRequestListener = new RequestListenerGroup();
+        mGlobalRequestListener.add(l);
+
+    }
+
+    /**
+     * 移除全局请求事件监听
+     *
+     * @param l
+     * @return
+     */
+    public static void removeRequestListenerGlobal(OnRequestListener<?> l) {
+        if (mGlobalRequestListener != null) mGlobalRequestListener.remove(l);
+    }
+
+    /**获得全局请求监听器,该监听器应该在所有请求自己的监听器之前被执行*/
+    public static RequestListenerGroup getGlobalRequestListener() {
+        return mGlobalRequestListener;
+    }
+
 }

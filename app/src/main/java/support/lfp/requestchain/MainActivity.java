@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         new RequestEvent<>(ApiManager.getApi().getWeatherList(), getLifecycle())
                 .addOnRequestListener((OnRequestSucceedListener<ModelWeatherList>) s -> mTV_Text.setText(new Gson().toJson(s))) //请求成功监听
                 .addOnEventListener(new OnEventDelayWaitBar(this).setShowThrowable(true)) /*请求进度提示监听*/
+
                 .start();
     }
 
