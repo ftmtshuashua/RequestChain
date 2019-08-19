@@ -6,6 +6,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import support.lfp.requestchain.RequestEvent;
+import support.lfp.requestchain.interior.IReqeuestEvent;
 import support.lfp.requestchain.listener.OnRequestListener;
 
 
@@ -44,23 +45,36 @@ public class RequestListenerGroup<E> implements OnRequestListener<E> {
     }
 
     @Override
-    public void onStart(RequestEvent event) {
-        map(onRequestListener -> onRequestListener.onStart(event));
+    public void onStart(IReqeuestEvent event) {
+        map(onRequestListener -> {
+            if (!event.isProcess()) return;
+            onRequestListener.onStart(event);
+        });
     }
 
     @Override
-    public void onSucceed(E e) {
-        map(onRequestListener -> onRequestListener.onSucceed(e));
+    public void onSucceed(IReqeuestEvent event, E e) {
+        map(onRequestListener -> {
+            if (!event.isProcess()) return;
+            onRequestListener.onSucceed(event, e);
+        });
     }
 
     @Override
-    public void onFailure(Throwable ex) {
-        map(onRequestListener -> onRequestListener.onFailure(ex));
+    public void onFailure(IReqeuestEvent event, Throwable ex) {
+        map(onRequestListener -> {
+            if (!event.isProcess()) return;
+            onRequestListener.onFailure(event, ex);
+        });
     }
 
     @Override
-    public void onEnd() {
-        map(onRequestListener -> onRequestListener.onEnd());
+    public void onEnd(IReqeuestEvent event) {
+        map(onRequestListener -> {
+            if (event.isInterrupt()) return;
+            onRequestListener.onEnd(event);
+
+        });
     }
 
 

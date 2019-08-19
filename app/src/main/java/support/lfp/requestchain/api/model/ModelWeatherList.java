@@ -25,17 +25,17 @@ public class ModelWeatherList implements ResponseTransformer.IResponseException 
 
     @Override
     public boolean isSucceed() {
-        return false;
+        return true;
     }
 
     @Override
     public int getCode() {
-        return 0;
+        return 666;
     }
 
     @Override
     public String getMsg() {
-        return null;
+        return isSucceed()?null:"测试异常信息";
     }
 
     public static final class Result {

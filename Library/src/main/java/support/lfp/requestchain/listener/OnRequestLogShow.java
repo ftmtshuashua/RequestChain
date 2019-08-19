@@ -3,6 +3,7 @@ package support.lfp.requestchain.listener;
 
 import support.lfp.requestchain.RequestChainConfig;
 import support.lfp.requestchain.RequestEvent;
+import support.lfp.requestchain.interior.IReqeuestEvent;
 import support.lfp.requestchain.listener.OnRequestListener;
 
 /**
@@ -21,27 +22,27 @@ public class OnRequestLogShow implements OnRequestListener {
     public OnRequestLogShow() {
     }
 
-    public OnRequestLogShow(String tab) {
+    public OnRequestLogShow(IReqeuestEvent event,String tab) {
         this.tab = tab;
     }
 
     @Override
-    public void onStart(RequestEvent event) {
+    public void onStart(IReqeuestEvent event) {
         RequestChainConfig.getLogger().i(tab + " onStart：" + event.toString());
     }
 
     @Override
-    public void onSucceed(Object o) {
+    public void onSucceed(IReqeuestEvent event,Object o) {
         RequestChainConfig.getLogger().i(tab + " onSucceed：" + o.toString());
     }
 
     @Override
-    public void onFailure(Throwable ex) {
+    public void onFailure(IReqeuestEvent event, Throwable ex) {
         RequestChainConfig.getLogger().e(tab + " onFailure：" + ex.toString());
     }
 
     @Override
-    public void onEnd() {
+    public void onEnd(IReqeuestEvent event) {
         RequestChainConfig.getLogger().i(tab + " onEnd()");
     }
 }

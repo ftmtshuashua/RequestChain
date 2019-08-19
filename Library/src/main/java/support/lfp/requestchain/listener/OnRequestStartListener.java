@@ -2,6 +2,7 @@ package support.lfp.requestchain.listener;
 
 
 import support.lfp.requestchain.RequestEvent;
+import support.lfp.requestchain.interior.IReqeuestEvent;
 
 /**
  * <pre>
@@ -22,17 +23,17 @@ public interface OnRequestStartListener<T> extends OnRequestListener<T> {
      *
      * @param event  正在执行的请求
      */
-    void onStart(RequestEvent<T> event);
+    void onStart(IReqeuestEvent event);
 
     @Override
-    default void onSucceed(T t) {
+    default void onSucceed(IReqeuestEvent event,T t) {
     }
+    @Override
+    default void onFailure(IReqeuestEvent event,Throwable ex) {}
 
     @Override
-    default void onFailure(Throwable ex) {}
+    default void onEnd(IReqeuestEvent event) {
 
-    @Override
-    default void onEnd() {
 
     }
 }

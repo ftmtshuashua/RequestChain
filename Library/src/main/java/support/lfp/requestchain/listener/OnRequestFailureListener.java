@@ -2,6 +2,7 @@ package support.lfp.requestchain.listener;
 
 
 import support.lfp.requestchain.RequestEvent;
+import support.lfp.requestchain.interior.IReqeuestEvent;
 import support.lfp.requestchain.listener.OnRequestListener;
 
 /**
@@ -18,20 +19,20 @@ import support.lfp.requestchain.listener.OnRequestListener;
 public interface OnRequestFailureListener<T> extends OnRequestListener<T> {
 
     @Override
-    default void onStart(RequestEvent event) {
+    default void onStart(IReqeuestEvent event) {
     }
 
     @Override
-    default void onSucceed(T t) {
+    default void onSucceed(IReqeuestEvent event,T t) {
     }
 
     /**
      * 访问失败，你包括本地失败和服务器失败
      */
-    void onFailure(Throwable ex);
+    void onFailure(IReqeuestEvent event, Throwable ex);
 
     @Override
-    default void onEnd() {
+    default void onEnd(IReqeuestEvent event) {
 
     }
 }

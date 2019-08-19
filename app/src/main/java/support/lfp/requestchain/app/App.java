@@ -5,6 +5,7 @@ import android.util.Log;
 
 import support.lfp.requestchain.RequestChainConfig;
 import support.lfp.requestchain.RequestEvent;
+import support.lfp.requestchain.interior.IReqeuestEvent;
 import support.lfp.requestchain.interior.Logger;
 import support.lfp.requestchain.listener.OnRequestListener;
 
@@ -44,22 +45,23 @@ public class App extends Application {
     private static final class GlobalRequestListener implements OnRequestListener {
 
         @Override
-        public void onStart(RequestEvent event) {
+        public void onStart(IReqeuestEvent event) {
             RequestChainConfig.getLogger().e("全局请求监听器:onStart()");
         }
 
         @Override
-        public void onSucceed(Object o) {
+        public void onSucceed(IReqeuestEvent event,Object o) {
             RequestChainConfig.getLogger().e("全局请求监听器:onSucceed()");
+//            event.complete();
         }
 
         @Override
-        public void onFailure(Throwable ex) {
+        public void onFailure(IReqeuestEvent event, Throwable ex) {
             RequestChainConfig.getLogger().e("全局请求监听器:onFailure()");
         }
 
         @Override
-        public void onEnd() {
+        public void onEnd(IReqeuestEvent event) {
             RequestChainConfig.getLogger().e("全局请求监听器:onEnd()");
         }
     }

@@ -28,12 +28,12 @@ public class OnEventChainLogShow implements EventChainObserver {
 
     @Override
     public void onChainStart() {
-        RequestChainConfig.getLogger().i(tab + " onChainStart()");
+        RequestChainConfig.getLogger().e(tab + " onChainStart()");
     }
 
     @Override
     public void onStart(EventChain event) {
-        RequestChainConfig.getLogger().i(tab + " onStart：" + event);
+        RequestChainConfig.getLogger().e(tab + " onStart：" + event);
     }
 
     @Override
@@ -43,11 +43,11 @@ public class OnEventChainLogShow implements EventChainObserver {
 
     @Override
     public void onNext(EventChain event) {
-        RequestChainConfig.getLogger().i(tab + " onNext：" + event);
+        RequestChainConfig.getLogger().e(tab + " onNext：" + event);
     }
 
     @Override
     public void onChainComplete() {
-        RequestChainConfig.getLogger().i(tab + " onChainComplete()");
+        RequestChainConfig.getLogger().e(tab + " onChainComplete()");
     }
 }

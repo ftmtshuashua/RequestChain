@@ -13,6 +13,7 @@ import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.internal.observers.LambdaObserver;
 import support.lfp.requestchain.exception.MsgException;
+import support.lfp.requestchain.interior.IReqeuestEvent;
 import support.lfp.requestchain.listener.OnRequestListener;
 import support.lfp.requestchain.listener.RequestListenerGroup;
 import support.lfp.requestchain.utils.ResponseTransformer;
@@ -28,7 +29,7 @@ import support.lfp.requestchain.utils.RxSchedulerManager;
  * Created by LiFuPing on 2018/12/21 10:40
  * </pre>
  */
-public class RequestEvent<E> extends EventChain {
+public class RequestEvent<E> extends EventChain implements IReqeuestEvent {
     /*Debug - 请求延时*/
     private static final int MASK_DEBUG_REQUEST_DELAY = 0xFFFFFF; // 24 bit  max:16777215
     private static final int MASK_DEBUG_ERROR = 0x01 << 24;
@@ -160,9 +161,11 @@ public class RequestEvent<E> extends EventChain {
     protected void call() throws Throwable {
         if (request != null) {
             isCall = true;
-            LambdaObserver observer = new LambdaObserver<E>(t ->
-                    setRequestSucceed(t)
-                    , throwable -> setRequestError(throwable)
+            LambdaObserver observer = new LambdaObserver<E>(
+                    t -> setRequestSucceed(t)
+                    , throwable -> {
+                setRequestError(throwable);
+            }
                     , () -> { }
                     , disposable -> setRequestStart()
             );
@@ -216,6 +219,7 @@ public class RequestEvent<E> extends EventChain {
         error(throwable);
     }
 
+
     private void listenerStart() {
         if (RequestChainConfig.getGlobalRequestListener() != null)
             RequestChainConfig.getGlobalRequestListener().onStart(this);
@@ -225,20 +229,20 @@ public class RequestEvent<E> extends EventChain {
 
     private void listenerSucceed(E t) {
         if (RequestChainConfig.getGlobalRequestListener() != null)
-            RequestChainConfig.getGlobalRequestListener().onSucceed(t);
-        if (mOnRequestListenerManager != null) mOnRequestListenerManager.onSucceed(t);
+            RequestChainConfig.getGlobalRequestListener().onSucceed(this, t);
+        if (mOnRequestListenerManager != null) mOnRequestListenerManager.onSucceed(this, t);
     }
 
     private void listenerEnd() {
         if (RequestChainConfig.getGlobalRequestListener() != null)
-            RequestChainConfig.getGlobalRequestListener().onEnd();
-        if (mOnRequestListenerManager != null) mOnRequestListenerManager.onEnd();
+            RequestChainConfig.getGlobalRequestListener().onEnd(this);
+        if (mOnRequestListenerManager != null) mOnRequestListenerManager.onEnd(this);
     }
 
     private void listenerFailure(Throwable throwable) {
         if (RequestChainConfig.getGlobalRequestListener() != null)
-            RequestChainConfig.getGlobalRequestListener().onFailure(throwable);
+            RequestChainConfig.getGlobalRequestListener().onFailure(this, throwable);
         if (mOnRequestListenerManager != null)
-            mOnRequestListenerManager.onFailure(throwable);
+            mOnRequestListenerManager.onFailure(this, throwable);
     }
 }

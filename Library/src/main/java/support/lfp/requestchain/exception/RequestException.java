@@ -41,4 +41,9 @@ public class RequestException extends Throwable {
     public int getCode() {
         return code;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +" - Code:"+getCode();
+    }
 }
