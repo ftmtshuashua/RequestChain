@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <support.lfp.requestchain.simple.widget.WaitView
+    <com.acap.request.simple.widget.WaitView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center"

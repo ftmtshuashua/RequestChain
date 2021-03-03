@@ -3,11 +3,10 @@ package support.lfp.requestchain.app;
 import android.app.Application;
 import android.util.Log;
 
-import support.lfp.requestchain.RequestChainConfig;
-import support.lfp.requestchain.RequestEvent;
-import support.lfp.requestchain.interior.IReqeuestEvent;
-import support.lfp.requestchain.interior.Logger;
-import support.lfp.requestchain.listener.OnRequestListener;
+import com.acap.request.RequestChainConfig;
+import com.acap.request.interior.IReqeuestEvent;
+import com.acap.request.interior.Logger;
+import com.acap.request.listener.OnRequestListener;
 
 /**
  * <pre>

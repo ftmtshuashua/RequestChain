@@ -1,7 +1,7 @@
 package support.lfp.requestchain.api;
 
 
-import support.lfp.requestchain.utils.ApiHelper;
+import com.acap.request.utils.ApiHelper;
 
 public class ApiManager {
 

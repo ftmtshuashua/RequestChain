@@ -1,11 +1,5 @@
 package support.lfp.requestchain.api.model
 
-import com.google.gson.Gson
-import support.lfp.requestchain.RequestEvent
-import support.lfp.requestchain.api.ApiManager
-import support.lfp.requestchain.listener.OnRequestSucceedListener
-import support.lfp.requestchain.simple.OnEventDelayWaitBar
-
 /**
  * <pre>
  * Tip:

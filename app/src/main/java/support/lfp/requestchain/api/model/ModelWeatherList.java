@@ -1,6 +1,6 @@
 package support.lfp.requestchain.api.model;
 
-import support.lfp.requestchain.utils.ResponseTransformer;
+import com.acap.request.utils.ResponseTransformer;
 
 /**
  * <pre>
