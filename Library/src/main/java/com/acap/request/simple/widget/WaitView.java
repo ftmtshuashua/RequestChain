@@ -10,7 +10,7 @@ import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 
-import support.lfp.requestchain.R;
+import com.acap.request.R;
 
 /**
  * <pre>

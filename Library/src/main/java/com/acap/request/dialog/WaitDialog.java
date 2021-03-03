@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 
-import support.lfp.requestchain.R;
+import com.acap.request.R;
 
 /**
  * <pre>

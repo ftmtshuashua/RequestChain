@@ -8,7 +8,7 @@ import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.OnLifecycleEvent;
 
-import support.lfp.requestchain.R;
+import com.acap.request.R;
 
 /**
  * <pre>
