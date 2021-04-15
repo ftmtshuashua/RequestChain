@@ -1,0 +1,14 @@
+plugins {
+    id 'java-library'
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_7
+    targetCompatibility = JavaVersion.VERSION_1_7
+}
+
+dependencies{
+    implementation project(':Lib-annotation')
+
+    compileOnly project(path: ':Lib-Environment')
+}

@@ -1,1 +1,6 @@
-include ':app', ':Library'
+include ':Lib-Environment'
+include ':Lib-processor'
+include ':Lib-annotation'
+include ':Lib'
+include ':app'
+//include ':Library'

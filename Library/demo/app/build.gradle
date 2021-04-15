@@ -2,11 +2,9 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 29
-    buildToolsVersion "30.0.2"
-
     defaultConfig {
-        applicationId "com.acap.rc"
-        minSdkVersion 21
+        applicationId "support.lfp.requestchain"
+        minSdkVersion 15
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -16,6 +14,7 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    buildToolsVersion = '29.0.0'
 }
 
 dependencies {
@@ -23,7 +22,6 @@ dependencies {
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 //    implementation 'com.github.ftmtshuashua:RequestChain:1.0.2'
 
-    implementation project(':Lib')
-    annotationProcessor project(':Lib-processor')
+    implementation project(':Library')
 
 }
