@@ -9,14 +9,22 @@
   </parent>
     
   <groupId>com.github.ftmtshuashua</groupId>
-  <artifactId>RequestChain-compiler</artifactId>
+  <artifactId>RequestChain-library</artifactId>
   <version>2.0.0-alpha</version>
-  <name>RequestChain-compiler</name>
+  <name>RequestChain-library</name>
   <url>http://maven.apache.org</url>
     
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jackson.ver>2.9.6</jackson.ver>
   </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.github.ftmtshuashua</groupId>
+      <artifactId>RequestChain-annotation</artifactId>
+      <version>2.0.0-alpha</version>
+    </dependency>
+  </dependencies>
 
 </project>

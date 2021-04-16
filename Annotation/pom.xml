@@ -9,9 +9,9 @@
   </parent>
     
   <groupId>com.github.ftmtshuashua</groupId>
-  <artifactId>RequestChain-compiler</artifactId>
+  <artifactId>RequestChain-annotation</artifactId>
   <version>2.0.0-alpha</version>
-  <name>RequestChain-compiler</name>
+  <name>RequestChain-annotation</name>
   <url>http://maven.apache.org</url>
     
   <properties>
