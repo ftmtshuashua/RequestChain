@@ -1,5 +1,5 @@
-include ':Environment'
-include ':Processor'
+include ':Runtime'
+include ':Compiler'
 include ':Annotation'
 include ':Library'
 include ':app'

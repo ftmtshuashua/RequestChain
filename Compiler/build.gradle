@@ -7,6 +7,4 @@ java {
 
 dependencies{
     implementation project(':Annotation')
-
-//    compileOnly project(path: ':Lib-Environment')
 }

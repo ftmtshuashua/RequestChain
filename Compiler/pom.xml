@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>com.github.ftmtshuashua</groupId>
+    <artifactId>RequestChain</artifactId>
+    <version>2.0.4-test</version>
+  </parent>
+    
+  <groupId>com.github.ftmtshuashua</groupId>
+  <artifactId>RequestChain-compiler</artifactId>
+  <version>2.0.4-test</version>
+  <name>RequestChain-compiler</name>
+  <url>http://maven.apache.org</url>
+    
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <jackson.ver>2.9.6</jackson.ver>
+  </properties>
+
+</project>

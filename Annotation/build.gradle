@@ -12,5 +12,5 @@ repositories {
 }
 
 dependencies {
-    compileOnly project(path: ':Environment')
+    compileOnly project(path: ':Runtime')
 }

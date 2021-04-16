@@ -24,7 +24,7 @@ dependencies {
 //    implementation 'com.github.ftmtshuashua:RequestChain:2.0.0-alpha'
 
     implementation project(':Library')
-    annotationProcessor project(':Processor')
+    annotationProcessor project(':Compiler')
 
 
 //    implementation 'com.jakewharton:butterknife:10.2.3'
