@@ -16,21 +16,19 @@ import retrofit2.http.Query;
  * Created by ACap on 2021/4/15 15:30
  * </pre>
  */
-@Api(
-        url = "https://api.caiyunapp.com"
-)
+@Api(url = "https://api.caiyunapp.com")
 public interface DemoApi {
 
     @GET("/")
-    Request<BeanData> getJson(@Query("X") String data);  //{"status": "ok"}
+    Request<BeanData> getJson();
 
     @GET("/v2/TAkhjf8d1nlSlspN/121.6544,25.1552/realtime.json")
-    Request<BeanData> getJson2(@Query("X") String data);  //{"status": "ok"}
+    Request<BeanData> getJson2();
 
     @GET("/xxx")
-    Request<BeanData> getJson3( );  //{"status": "ok"}
+    Request<BeanData> getJson3();
 
     @GET("/v2/TAkhjf8d1nlSlspN/121.6544,25.1552/realtime.json")
-    Call<BeanData> getJson2(@Query("X") String data, @Query("2") int value);  //{"status":"failed", "error":"'API quota is exhausted'", "api_version":"v2"}
+    Call<BeanData> getTest(@Query("X") String data, @Query("2") int value);
 
 }

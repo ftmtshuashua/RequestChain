@@ -6,10 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.acap.ec.EventChain;
-import com.acap.ec.OnEventLogListener;
 import com.acap.ec.listener.OnChainListener;
 import com.acap.ec.listener.OnEventSucceedListener;
-import com.acap.rc.api.DemoApi;
 import com.acap.rc.api.DemoApiProvider;
 import com.acap.rc.bean.BeanData;
 import com.google.gson.Gson;
@@ -34,8 +32,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Call<BeanData> json2 = DemoApiProvider.getJson2("", 1);
-
+        Call<BeanData> json2 = DemoApiProvider.getTest("", 1);
         json2.enqueue(new Callback<BeanData>() {
             @Override
             public void onResponse(Call<BeanData> call, Response<BeanData> response) {
@@ -48,19 +45,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        DemoApiProvider.getJson("")
-                .addOnEventListener(new OnEventSucceedListener<BeanData>() {
-                    @Override
-                    public void onNext(BeanData result) {
-
-                    }
+        DemoApiProvider.getJson()
+                .addOnEventListener((OnEventSucceedListener<BeanData>) result -> {
                 })
-                .chain(DemoApiProvider.getJson2("").chain(DemoApiProvider.getJson3()))
+                .chain(DemoApiProvider.getJson2().chain(DemoApiProvider.getJson3()))
                 .chain(DemoApiProvider.getJson3())
                 .addOnChainListener(new OnChainLogListener())
                 .start();
     }
 
+    //链日志
     private static final class OnChainLogListener implements OnChainListener {
         @Override
         public void onChainStart() {

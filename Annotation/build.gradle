@@ -1,6 +1,4 @@
-plugins {
-    id 'java-library'
-}
+apply plugin: 'java'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_7
@@ -14,5 +12,5 @@ repositories {
 }
 
 dependencies {
-    compileOnly project(path: ':Lib-Environment')
+    compileOnly project(path: ':Environment')
 }
