@@ -15,10 +15,10 @@ import retrofit2.Response;
  * Created by ACap on 2021/4/15 15:07
  * </pre>
  */
-public class Rc<T> extends EventChain<Object, T> implements Callback<T> {
+public class Request<T> extends EventChain<Object, T> implements Callback<T> {
     private Call<T> mCall;
 
-    public Rc(Call<T> call) {
+    public Request(Call<T> call) {
         this.mCall = call;
     }
 

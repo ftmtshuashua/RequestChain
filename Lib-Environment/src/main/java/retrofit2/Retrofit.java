@@ -22,13 +22,5 @@ public final class Retrofit {
         public Builder client(OkHttpClient client) {
             return this;
         }
-
-        public Builder addConverterFactory(Converter.Factory factory){
-            return this;
-        }
-
-        public Builder addCallAdapterFactory(CallAdapter.Factory factory){
-            return this;
-        }
     }
 }

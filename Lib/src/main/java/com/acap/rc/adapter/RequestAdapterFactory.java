@@ -17,21 +17,21 @@ import retrofit2.Retrofit;
  * Created by ACap on 2021/4/15 15:07
  * </pre>
  */
-public class RcAdapterFactory extends CallAdapter.Factory {
+public class RequestAdapterFactory extends CallAdapter.Factory {
 
-    private Map<Type, RcAdapter> mCache;
+    private Map<Type, RequestAdapter> mCache;
 
     @Override
     public CallAdapter<?, ?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
-        if (getRawType(returnType) != Rc.class) return null;
+        if (getRawType(returnType) != Request.class) return null;
         return get(getParameterUpperBound(0, (ParameterizedType) returnType));
     }
 
-    private RcAdapter get(Type innerType) {
+    private RequestAdapter get(Type innerType) {
         if (mCache == null) mCache = new HashMap<>();
-        RcAdapter rcAdapter = mCache.get(innerType);
+        RequestAdapter rcAdapter = mCache.get(innerType);
         if (rcAdapter == null) {
-            rcAdapter = new RcAdapter(innerType);
+            rcAdapter = new RequestAdapter(innerType);
             mCache.put(innerType, rcAdapter);
         }
         return rcAdapter;

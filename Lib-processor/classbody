@@ -1,0 +1,17 @@
+${package}
+import com.acap.ec.EventChain;
+import com.acap.rc.provider.ProviderRetrofitGenerator;
+${import}
+public class ${ApiClass}Provider {
+    private static final ${ApiClass} mApi = ProviderRetrofitGenerator.getApi(${ApiClass}.class, "${Url}", ${OkHttpConfig}.class, ${RetrofitConfig}.class);
+    private ${ApiClass}Provider() {}
+${methods}
+}
+
+
+//----------------------------------------方法
+public static final <P> EventChain<P, ${Void}> ${method}(${params}) {return (EventChain) mApi.${method}(${paramsvalue});}
+
+
+//----------------------------------------方法2
+public static final ${Void} ${method}(${params}) {return mApi.${method}(${paramsvalue});}

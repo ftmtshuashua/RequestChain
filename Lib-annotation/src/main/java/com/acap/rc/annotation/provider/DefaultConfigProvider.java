@@ -1,12 +1,9 @@
 package com.acap.rc.annotation.provider;
 
-import com.acap.rc.adapter.RcAdapterFactory;
-
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * <pre>
@@ -39,10 +36,7 @@ public class DefaultConfigProvider {
 
         @Override
         public Retrofit.Builder builder(Retrofit.Builder builder, String url, OkHttpClient client) {
-            builder.baseUrl(url)
-                    .client(client)
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .addCallAdapterFactory(new RcAdapterFactory());
+            builder.baseUrl(url).client(client);
             return builder;
         }
     }
