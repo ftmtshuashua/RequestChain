@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.acap.ec.EventChain;
 import com.acap.ec.OnEventLogListener;
 import com.acap.ec.listener.OnChainListener;
+import com.acap.ec.listener.OnEventSucceedListener;
 import com.acap.rc.api.DemoApi;
 import com.acap.rc.api.DemoApiProvider;
 import com.acap.rc.bean.BeanData;
@@ -48,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
         });
 
         DemoApiProvider.getJson("")
+                .addOnEventListener(new OnEventSucceedListener<BeanData>() {
+                    @Override
+                    public void onNext(BeanData result) {
+
+                    }
+                })
                 .chain(DemoApiProvider.getJson2("").chain(DemoApiProvider.getJson3()))
                 .chain(DemoApiProvider.getJson3())
                 .addOnChainListener(new OnChainLogListener())

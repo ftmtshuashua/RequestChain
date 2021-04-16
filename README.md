@@ -21,9 +21,23 @@
 
 
 ## 使用
-使用方式参考：
-![MainActivity.java](https://github.com/ftmtshuashua/RequestChain/blob/master/app/src/main/java/com/acap/rc/MainActivity.java)
-(配合Java8的lambda语法使用逻辑更清晰)
+```
+//定义API
+
+@Api(url = "https://www.host.com" )
+public interface DemoApi {
+    @GET("/")
+    Request<BeanData> getJson();
+}
+```
+
+```
+//使用APi
+public void request(){
+    
+}
+```
+
 
 
 ## 相关资料
