@@ -34,7 +34,7 @@ public interface DemoApi {
 ```
 //使用APi
 public void request(){
-    
+    DemoApiProvider.getJson().start();
 }
 ```
 

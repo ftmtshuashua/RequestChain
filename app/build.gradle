@@ -21,9 +21,12 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.0.2'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
-//    implementation 'com.github.ftmtshuashua:RequestChain:1.0.2'
+    implementation 'com.github.ftmtshuashua:RequestChain:2.0.0-alpha'
 
-    implementation project(':Lib')
-    annotationProcessor project(':Lib-processor')
+//    implementation project(':Lib')
+//    annotationProcessor project(':Lib-processor')
 
+
+    implementation 'com.jakewharton:butterknife:10.2.3'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'
 }
