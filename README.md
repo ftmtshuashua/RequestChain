@@ -10,7 +10,7 @@
 
 </div>
 
->基于EventChain的Android请求事件链，请求通过Retrofit+RxJava+OkHttp实现
+>基于EventChain+Retrofit+OkHttp实现的网络请求框架
 
 >链式请求
 

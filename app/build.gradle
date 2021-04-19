@@ -23,9 +23,7 @@ dependencies {
 //    implementation project(':library')
 //    annotationProcessor project(':compiler')
 
-
-    implementation 'com.github.ftmtshuashua:EventChain:2.0.0-alpha2'
-    implementation 'com.github.ftmtshuashua:RequestChain:2.0.0-alpha'
-    annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:2.0.0-alpha'
+    implementation 'com.github.ftmtshuashua:RequestChain:2.0.0-alpha2'
+    annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:2.0.0-alpha2'
 
 }
