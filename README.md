@@ -60,6 +60,6 @@ allprojects {
 ```
 dependencies {
     implementation 'com.github.ftmtshuashua:RequestChain:version'
-    annotationProcessor 'com.github.ftmtshuashua:RequestChain-processor:version'
+    annotationProcessor 'com.github.ftmtshuashua:RequestChain-compiler:version'
 }
 ```

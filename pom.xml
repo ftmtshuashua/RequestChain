@@ -7,9 +7,12 @@
   <version>2.0.0-alpha</version>
   <packaging>pom</packaging>
   <name>RequestChain</name>
-  
-  <modules>=
+
+  <!-- 项目中的Module -->
+  <modules>
     <module>Library</module>
+    <module>Annotation</module>
+    <module>Compiler</module>
   </modules>
   
   <build>
