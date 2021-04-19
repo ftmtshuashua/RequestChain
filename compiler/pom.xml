@@ -5,18 +5,27 @@
   <parent>
     <groupId>com.github.ftmtshuashua</groupId>
     <artifactId>RequestChain</artifactId>
-    <version>2.0.0-alpha</version>
+    <version>2.0.5-alpha</version>
   </parent>
-    
+
   <groupId>com.github.ftmtshuashua</groupId>
-  <artifactId>annotation</artifactId>
-  <version>2.0.0-alpha</version>
-  <name>annotation</name>
+  <artifactId>compiler</artifactId>
+  <version>2.0.5-alpha</version>
+  <name>compiler</name>
   <url>http://maven.apache.org</url>
     
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>com.github.ftmtshuashua</groupId>
+      <artifactId>annotation</artifactId>
+      <version>2.0.5-alpha</version>
+    </dependency>
+  </dependencies>
 
 
 </project>

@@ -6,5 +6,5 @@ java {
 }
 
 dependencies{
-    implementation project(':Annotation')
+    implementation project(':annotation')
 }

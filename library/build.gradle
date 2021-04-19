@@ -34,6 +34,6 @@ dependencies {
     api 'com.squareup.okhttp3:okhttp:4.9.1'
     api 'com.squareup.retrofit2:converter-gson:2.9.0'  //自动引入Gson
 
-    api project(':Annotation')
+    api project(':annotation')
 
 }
