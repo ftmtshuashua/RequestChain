@@ -5,12 +5,12 @@
   <parent>
     <groupId>com.github.ftmtshuashua</groupId>
     <artifactId>RequestChain</artifactId>
-    <version>2.1.0-alpha</version>
+    <version>2.0.0-alpha</version>
   </parent>
     
   <groupId>com.github.ftmtshuashua</groupId>
   <artifactId>annotation</artifactId>
-  <version>2.1.0-alpha</version>
+  <version>2.0.0-alpha</version>
   <name>annotation</name>
   <url>http://maven.apache.org</url>
     
