@@ -26,6 +26,7 @@ dependencies {
     implementation project(':library')
     annotationProcessor project(':compiler')
 
+    implementation 'com.github.ftmtshuashua:RequestChain:master-SNAPSHOT'
 
 //    implementation 'com.jakewharton:butterknife:10.2.3'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.3'

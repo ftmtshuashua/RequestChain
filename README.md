@@ -55,9 +55,7 @@ allprojects {
         maven { url 'https://www.jitpack.io' }
     }
 }
-```
-在Model的build.gradle中添加
-```
+
 dependencies {
     implementation 'com.github.ftmtshuashua:RequestChain:version'
     annotationProcessor 'com.github.ftmtshuashua:RequestChain-compiler:version'
