@@ -20,7 +20,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.ftmtshuashua.RequestChain</groupId>
+            <groupId>com.github.ftmtshuashua</groupId>
             <artifactId>annotation</artifactId>
             <version>2.0.0-alpha</version>
         </dependency>
