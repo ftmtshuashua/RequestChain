@@ -3,6 +3,8 @@ package com.acap.rc.api;
 import com.acap.rc.adapter.Request;
 import com.acap.rc.annotation.Api;
 import com.acap.rc.annotation.provider.DefaultConfigProvider;
+import com.acap.rc.model.BaseModel;
+import com.acap.rc.model.Model_Data;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -29,4 +31,5 @@ public interface DemoApi {
     Call<String> retrofit2Api();  //使用原生Retrofit2的Api
 
     // ... 其他：如 RxJava 的 Observer<String> rxjavaApi();
+
 }

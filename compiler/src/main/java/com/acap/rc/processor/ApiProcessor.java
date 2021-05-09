@@ -48,12 +48,17 @@ public class ApiProcessor extends AbstractProcessor {
     private Messager mMessager;
     private Filer mFiler;
 
+    private void print(CharSequence msg) {
+        mMessager.printMessage(Diagnostic.Kind.NOTE, msg);
+    }
+
     @Override
     public synchronized void init(ProcessingEnvironment processingEnvironment) {
         super.init(processingEnvironment);
         mElements = processingEnvironment.getElementUtils();
         mMessager = processingEnvironment.getMessager();
         mFiler = processingEnvironment.getFiler();
+
     }
 
     private TypeMirror getTypeMirror(Runnable runnable) {
@@ -67,12 +72,13 @@ public class ApiProcessor extends AbstractProcessor {
 
     //获得泛型的类型
     private String getGenericType(String classtype) {
-        Matcher matcher = Pattern.compile("<(.*?)>").matcher(classtype);
+
+        Matcher matcher = Pattern.compile("<(.*?)>$").matcher(classtype);
         boolean isHas = matcher.find();
         if (isHas) {
-            return matcher.group(0)
-                    .replace("<", "")
-                    .replace(">", "");
+            String group = matcher.group(0);
+            String substring = group.substring(1, group.length() - 1);
+            return substring;
         }
         return classtype;
     }
@@ -89,11 +95,11 @@ public class ApiProcessor extends AbstractProcessor {
                     .replace(")", "")
                     .split(",");
         }
-        if(mParamsTypeArray!=null){
+        if (mParamsTypeArray != null) {
             for (int i = 0; i < mParamsTypeArray.length; i++) {
                 String type = mParamsTypeArray[i];
                 String name = parameters.get(i).getSimpleName().toString();
-                array.add(new ApiClassModel.MethodParams(type,name));
+                array.add(new ApiClassModel.MethodParams(type, name));
             }
         }
         return array;
@@ -101,6 +107,7 @@ public class ApiProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+
         try {
             for (Element element : roundEnvironment.getElementsAnnotatedWith(Api.class)) {
                 final Api annotation = element.getAnnotation(Api.class);
