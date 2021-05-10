@@ -1,8 +1,11 @@
 package com.acap.rc;
 
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.acap.ec.EventChain;
+import com.acap.ec.listener.OnChainListener;
 import com.acap.ec.listener.OnEventFailureListener;
 import com.acap.ec.listener.OnEventSucceedListener;
 import com.acap.rc.api.DemoApiProvider;
@@ -37,6 +40,20 @@ public class MainActivity extends Activity {
                 //请求失败
             }
         });
+
+        DemoApiProvider.mapApi()
+                .addOnEventListener((OnEventSucceedListener<String>) result -> {
+
+                })
+                .addOnEventListener((OnEventFailureListener<String>) e -> {
+
+
+                })
+                .fork(DemoApiProvider.mapApi(), DemoApiProvider.mapApi(), DemoApiProvider.mapApi())
+
+                .chain(DemoApiProvider.mapApi())
+                .start();
+
 
 
         //----------- Request<> 对象具有EventChain特性 ------------
