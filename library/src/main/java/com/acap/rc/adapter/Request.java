@@ -1,5 +1,8 @@
 package com.acap.rc.adapter;
 
+import android.os.Handler;
+import android.os.Looper;
+
 import com.acap.ec.EventChain;
 
 import retrofit2.Call;
@@ -18,8 +21,15 @@ import retrofit2.Response;
 public class Request<T> extends EventChain<Object, T> implements Callback<T> {
     private Call<T> mCall;
 
+    //在主线程回调
+    private Handler mHandler;
+
     public Request(Call<T> call) {
         this.mCall = call;
+        Looper looper = Looper.myLooper();
+        if (looper != null) {
+            mHandler = new Handler(looper);
+        }
     }
 
     @Override
@@ -30,6 +40,14 @@ public class Request<T> extends EventChain<Object, T> implements Callback<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
+        if (mHandler == null) {
+            performOnResponse(call, response);
+        } else {
+            mHandler.post(() -> performOnResponse(call, response));
+        }
+    }
+
+    private void performOnResponse(Call<T> call, Response<T> response) {
         if (response.isSuccessful()) {
             next(response.body());
         } else {
@@ -37,9 +55,14 @@ public class Request<T> extends EventChain<Object, T> implements Callback<T> {
         }
     }
 
+
     @Override
     public void onFailure(Call<T> call, Throwable t) {
-        error(t);
+        if (mHandler != null) {
+            mHandler.post(() -> error(t));
+        } else {
+            error(t);
+        }
     }
 
 }
