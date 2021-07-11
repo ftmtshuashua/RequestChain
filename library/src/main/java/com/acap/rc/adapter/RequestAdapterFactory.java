@@ -23,12 +23,16 @@ public class RequestAdapterFactory extends CallAdapter.Factory {
 
     @Override
     public CallAdapter<?, ?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
-        if (getRawType(returnType) != Request.class) return null;
+        if (getRawType(returnType) != Request.class) {
+            return null;
+        }
         return get(getParameterUpperBound(0, (ParameterizedType) returnType));
     }
 
     private RequestAdapter get(Type innerType) {
-        if (mCache == null) mCache = new HashMap<>();
+        if (mCache == null) {
+            mCache = new HashMap<>();
+        }
         RequestAdapter rcAdapter = mCache.get(innerType);
         if (rcAdapter == null) {
             rcAdapter = new RequestAdapter(innerType);

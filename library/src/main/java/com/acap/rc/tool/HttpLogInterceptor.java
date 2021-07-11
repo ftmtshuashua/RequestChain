@@ -132,8 +132,12 @@ public class HttpLogInterceptor implements Interceptor {
      * @param msg   日志信息
      */
     private void print(int level, String msg) {
-        if ((mLevel & level) == 0 || !isLogEnabled()) return;
-        if (mLogger != null) mLogger.print(TAG, msg);
+        if ((mLevel & level) == 0 || !isLogEnabled()) {
+            return;
+        }
+        if (mLogger != null) {
+            mLogger.print(TAG, msg);
+        }
     }
 
     //日志输出
@@ -309,7 +313,9 @@ public class HttpLogInterceptor implements Interceptor {
 
         //判断是否为可打印的文本
         public static final boolean isPlaintext(MediaType mediaType) {
-            if (mediaType == null) return false;
+            if (mediaType == null) {
+                return false;
+            }
             if (mediaType.type() != null && mediaType.type() == "text") {
                 return true;
             }

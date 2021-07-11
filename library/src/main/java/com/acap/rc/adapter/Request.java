@@ -3,7 +3,7 @@ package com.acap.rc.adapter;
 import android.os.Handler;
 import android.os.Looper;
 
-import com.acap.ec.EventChain;
+import com.acap.ec.Event;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -13,12 +13,12 @@ import retrofit2.Response;
 /**
  * <pre>
  * Tip:
- *      适配EventChain的请求
+ *      适配Event的请求
  *
  * Created by ACap on 2021/4/15 15:07
  * </pre>
  */
-public class Request<T> extends EventChain<Object, T> implements Callback<T> {
+public class Request<T> extends Event<Object, T> implements Callback<T> {
     private Call<T> mCall;
 
     //在主线程回调

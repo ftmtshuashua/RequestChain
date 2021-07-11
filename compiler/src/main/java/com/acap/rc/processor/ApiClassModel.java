@@ -14,13 +14,13 @@ import java.util.List;
 class ApiClassModel {
 
     //获得类的全量名称
-    public static final String getClassAllName(String packagename, String apiname) {
+    public static String getClassAllName(String packagename, String apiname) {
         return packagename + "." + apiname + "Provider";
     }
 
     //生成类的Body
     public static final String BODY_CLASS = "${package}\n" +
-            "import com.acap.ec.EventChain;\n" +
+            "import com.acap.ec.Event;\n" +
             "import com.acap.rc.provider.ProviderRetrofitGenerator;\n" +
             "${import}\n" +
             "public class ${ApiClass}Provider {\n" +
@@ -30,7 +30,7 @@ class ApiClassModel {
             "}";
 
     //如果返回类型为Request
-    public static final String BODY_METHOD_REQUEST = "public static final <P> EventChain<P, ${Void}> ${method}(${params}) {return (EventChain) mApi.${method}(${paramsvalue});}\n";
+    public static final String BODY_METHOD_REQUEST = "public static final <P> Event<P, ${Void}> ${method}(${params}) {return (Event) mApi.${method}(${paramsvalue});}\n";
     //其他返回类型
     public static final String BODY_METHOD_OTHER = "public static final ${Void} ${method}(${params}) {return mApi.${method}(${paramsvalue});}\n";
 
@@ -117,6 +117,7 @@ class ApiClassModel {
         return SB.toString();
     }
 
+    @Override
     public String toString() {
         return BODY_CLASS
                 .replace("${package}", getPackage())
@@ -149,9 +150,9 @@ class ApiClassModel {
         protected String mVoid; //方法返回值内容
 
 
-        public Method(String mName,String mVoid) {
+        public Method(String mName, String mVoid) {
             this.mName = mName;
-            this.mVoid=mVoid;
+            this.mVoid = mVoid;
         }
 
         public Method addParams(MethodParams params) {
@@ -165,7 +166,9 @@ class ApiClassModel {
             for (MethodParams mParam : mParams) {
                 SB.append(",").append(mParam.mType).append(" ").append(mParam.mName);
             }
-            if (SB.length() > 0) SB.deleteCharAt(0);
+            if (SB.length() > 0) {
+                SB.deleteCharAt(0);
+            }
             return SB.toString();
         }
 
@@ -175,22 +178,26 @@ class ApiClassModel {
             for (MethodParams mParam : mParams) {
                 SB.append(",").append(mParam.mName);
             }
-            if (SB.length() > 0) SB.deleteCharAt(0);
+            if (SB.length() > 0) {
+                SB.deleteCharAt(0);
+            }
             return SB.toString();
         }
 
 
+        @Override
         public abstract String toString();
     }
 
     //Request的方法
-    public static final class RequestMethod extends Method {
+    public static class RequestMethod extends Method {
 
 
         public RequestMethod(String mName, String mVoid) {
             super(mName, mVoid);
         }
 
+        @Override
         public String toString() {
             return BODY_METHOD_REQUEST
                     .replace("${Void}", mVoid)
@@ -201,13 +208,14 @@ class ApiClassModel {
     }
 
     //其他方法
-    public static final class OtherMethod extends Method {
+    public static class OtherMethod extends Method {
 
 
         public OtherMethod(String mName, String mVoid) {
             super(mName, mVoid);
         }
 
+        @Override
         public String toString() {
             return BODY_METHOD_OTHER
                     .replace("${Void}", mVoid)
