@@ -2,8 +2,8 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
-      <module name="RequestChain.app" target="11" />
-      <module name="RequestChain.library" target="11" />
+      <module name="RequestChain.app" target="1.8" />
+      <module name="RequestChain.library" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

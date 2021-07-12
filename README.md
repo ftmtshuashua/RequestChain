@@ -30,8 +30,15 @@ allprojects {
 }
 
 dependencies {
+
+    implementation 'com.github.ftmtshuashua:EventChain:2.0.0-alpha3'
     implementation 'com.github.ftmtshuashua:RequestChain:version'
     annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:version'
+    
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'  //自动引入Gson
+    
 }
 ```
 

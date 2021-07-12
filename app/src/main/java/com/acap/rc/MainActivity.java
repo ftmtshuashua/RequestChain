@@ -1,13 +1,10 @@
 package com.acap.rc;
 
-import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.os.Bundle;
 
-import com.acap.ec.EventChain;
-import com.acap.ec.listener.OnChainListener;
-import com.acap.ec.listener.OnEventFailureListener;
-import com.acap.ec.listener.OnEventSucceedListener;
+import com.acap.ec.listener.OnEventErrorListener;
+import com.acap.ec.listener.OnEventNextListener;
 import com.acap.rc.api.DemoApiProvider;
 
 import retrofit2.Call;
@@ -42,27 +39,23 @@ public class MainActivity extends Activity {
         });
 
         DemoApiProvider.mapApi()
-                .addOnEventListener((OnEventSucceedListener<String>) result -> {
+                .listener((OnEventNextListener<Object, String>) result -> {
 
                 })
-                .addOnEventListener((OnEventFailureListener<String>) e -> {
+                .listener((OnEventErrorListener<Object, String>) e -> {
 
 
                 })
-                .fork(DemoApiProvider.mapApi(), DemoApiProvider.mapApi(), DemoApiProvider.mapApi())
 
+                .merge(DemoApiProvider.mapApi(), DemoApiProvider.mapApi(), DemoApiProvider.mapApi())
                 .chain(DemoApiProvider.mapApi())
                 .start();
 
 
-
         //----------- Request<> 对象具有EventChain特性 ------------
         DemoApiProvider.mapApi()
-                .addOnEventListener((OnEventSucceedListener<String>) result -> System.out.println("API请求的结果:" + result))
-                .addOnEventListener((OnEventFailureListener) e -> {
-                    System.err.println("请求失败");
-                    e.printStackTrace();
-                })
+                .listener((OnEventNextListener<Object, String>) result -> System.out.println("API请求的结果:" + result))
+                .listener((OnEventErrorListener<Object, String>) e -> System.err.println("请求失败:" + e))
                 .chain(DemoApiProvider.mapApi())
                 .start();
     }
