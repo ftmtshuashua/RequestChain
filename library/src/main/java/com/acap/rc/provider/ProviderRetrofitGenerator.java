@@ -49,8 +49,8 @@ public class ProviderRetrofitGenerator {
                 builder_retrofit = RetrofitGlobalConfig(builder_retrofit);
 
                 api = builder_retrofit.build().create(service);
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (Throwable e) {
+                throw new RuntimeException(e);
             }
         }
         return (T) api;

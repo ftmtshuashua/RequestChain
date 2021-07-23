@@ -171,7 +171,7 @@ public class HttpLogInterceptor implements Interceptor {
         Response mResponse;
         try {
             mResponse = chain.proceed(request);
-        } catch (Exception e) {
+        } catch (Throwable e) {
             assemblyError(logs, chain, e, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs));
             print(logs);
             throw e;
@@ -208,14 +208,14 @@ public class HttpLogInterceptor implements Interceptor {
                 }
                 assemblyBody(logs, data);
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("Exception: {0}", e)));
             logs.add(new PrintLog(LEVEL_BASIC, ""));
         }
     }
 
     //日志装载：异常
-    private void assemblyError(List<PrintLog> logs, Chain chain, Exception e, long elapsed) {
+    private void assemblyError(List<PrintLog> logs, Chain chain, Throwable e, long elapsed) {
         Request request = chain.request();
         logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("END OF  --->>> {0} Request 耗时({1}ms)", request.method(), elapsed)));
         logs.add(new PrintLog(LEVEL_BASIC, ""));
@@ -246,7 +246,7 @@ public class HttpLogInterceptor implements Interceptor {
                     logs.add(new PrintLog(LEVEL_BODY, "Exception: Body == null 或者 内容不是Json类型"));
                 }
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("Exception: {0}", e)));
         }
         return mResponse;
@@ -264,7 +264,7 @@ public class HttpLogInterceptor implements Interceptor {
             } else {
                 message = json;
             }
-        } catch (Exception e) {
+        } catch (Throwable e) {
             message = json;
         }
 

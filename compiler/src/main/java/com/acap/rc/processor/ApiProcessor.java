@@ -37,6 +37,7 @@ import javax.tools.Diagnostic;
  * </pre>
  */
 
+//@AutoService(Processor.class)
 @SupportedAnnotationTypes("com.acap.rc.annotation.Api")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class ApiProcessor extends AbstractProcessor {

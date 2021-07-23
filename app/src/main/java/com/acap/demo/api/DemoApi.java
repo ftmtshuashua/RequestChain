@@ -1,12 +1,12 @@
-package com.acap.rc.api;
+package com.acap.demo.api;
+
 
 import com.acap.rc.adapter.Request;
 import com.acap.rc.annotation.Api;
 import com.acap.rc.annotation.provider.DefaultConfigProvider;
-import com.acap.rc.model.BaseModel;
-import com.acap.rc.model.Model_Data;
 
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
@@ -14,7 +14,7 @@ import retrofit2.http.POST;
         //必填 - 定义API的服务器
         url = "http://www.baidu.com"
         //可选 - OkHttp的属性配置
-        , configOkHttp = DefaultConfigProvider.OkHttpDefaultConfigProvider.class
+        , configOkHttp = MyOkHttpConfigProvider.class
         //可选 - Retrofit的属性配置
         , configRetrofit = DefaultConfigProvider.RetrofitDefaultConfigProvider.class
 )

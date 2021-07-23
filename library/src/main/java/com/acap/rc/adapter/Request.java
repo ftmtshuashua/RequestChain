@@ -1,9 +1,7 @@
 package com.acap.rc.adapter;
 
-import android.os.Handler;
-import android.os.Looper;
-
 import com.acap.ec.Event;
+import com.acap.rc.schedulers.MainSchedulers;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -21,15 +19,9 @@ import retrofit2.Response;
 public class Request<T> extends Event<Object, T> implements Callback<T> {
     private Call<T> mCall;
 
-    //在主线程回调
-    private Handler mHandler;
 
     public Request(Call<T> call) {
         this.mCall = call;
-        Looper looper = Looper.myLooper();
-        if (looper != null) {
-            mHandler = new Handler(looper);
-        }
     }
 
     @Override
@@ -40,29 +32,23 @@ public class Request<T> extends Event<Object, T> implements Callback<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
-        if (mHandler == null) {
-            performOnResponse(call, response);
-        } else {
-            mHandler.post(() -> performOnResponse(call, response));
-        }
+        MainSchedulers.run(() -> performOnResponse(call, response));
     }
 
     private void performOnResponse(Call<T> call, Response<T> response) {
-        if (response.isSuccessful()) {
-            next(response.body());
-        } else {
-            error(new HttpException(response));
-        }
+        MainSchedulers.run(() -> {
+            if (response.isSuccessful()) {
+                next(response.body());
+            } else {
+                error(new HttpException(response));
+            }
+        });
     }
 
 
     @Override
     public void onFailure(Call<T> call, Throwable t) {
-        if (mHandler != null) {
-            mHandler.post(() -> error(t));
-        } else {
-            error(t);
-        }
+        MainSchedulers.run(() -> error(t));
     }
 
 }

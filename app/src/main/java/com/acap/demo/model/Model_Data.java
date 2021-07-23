@@ -1,4 +1,4 @@
-package com.acap.rc.model;
+package com.acap.demo.model;
 
 public class Model_Data {
 
