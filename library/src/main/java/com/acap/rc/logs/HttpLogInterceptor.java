@@ -1,7 +1,9 @@
-package com.acap.rc.tool;
+package com.acap.rc.logs;
 
 import android.text.TextUtils;
 import android.util.Log;
+
+import com.acap.rc.RequestChain;
 
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
@@ -122,7 +124,7 @@ public class HttpLogInterceptor implements Interceptor {
      * @return
      */
     public boolean isLogEnabled() {
-        return (mLevel & LEVEL_BASIC) != 0 && mLogger != null;
+        return RequestChain.isDebug() && (mLevel & LEVEL_BASIC) != 0 && mLogger != null;
     }
 
     /**

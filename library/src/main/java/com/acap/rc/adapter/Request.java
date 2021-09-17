@@ -32,10 +32,6 @@ public class Request<T> extends Event<Object, T> implements Callback<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
-        MainSchedulers.run(() -> performOnResponse(call, response));
-    }
-
-    private void performOnResponse(Call<T> call, Response<T> response) {
         MainSchedulers.run(() -> {
             if (response.isSuccessful()) {
                 next(response.body());

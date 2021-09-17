@@ -1,9 +1,10 @@
 package com.acap.rc.annotation;
 
 
-import com.acap.rc.annotation.provider.DefaultConfigProvider;
-import com.acap.rc.annotation.provider.OkHttpConfigProvider;
-import com.acap.rc.annotation.provider.RetrofitConfigProvider;
+import com.acap.rc.annotation.service.NullOkHttpConfig;
+import com.acap.rc.annotation.service.NullRetrofitConfig;
+import com.acap.rc.annotation.service.OkHttpConfig;
+import com.acap.rc.annotation.service.RetrofitConfig;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -30,11 +31,11 @@ public @interface Api {
     /**
      * 指定OkHttp的配置
      */
-    Class<? extends OkHttpConfigProvider> configOkHttp() default DefaultConfigProvider.OkHttpDefaultConfigProvider.class;
+    Class<? extends OkHttpConfig> okhttpConfig() default NullOkHttpConfig.class;
 
     /**
      * 指定Retrofit的配置
      */
-    Class<? extends RetrofitConfigProvider> configRetrofit() default DefaultConfigProvider.RetrofitDefaultConfigProvider.class;
+    Class<? extends RetrofitConfig> retrofitConfig() default NullRetrofitConfig.class;
 
 }

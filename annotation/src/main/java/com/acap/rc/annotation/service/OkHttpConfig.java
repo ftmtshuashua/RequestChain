@@ -1,6 +1,4 @@
-package com.acap.rc.annotation.provider;
-
-import java.util.concurrent.TimeUnit;
+package com.acap.rc.annotation.service;
 
 import okhttp3.OkHttpClient;
 
@@ -12,6 +10,6 @@ import okhttp3.OkHttpClient;
  * Created by ACap on 2021/4/15 17:08
  * </pre>
  */
-public interface OkHttpConfigProvider {
+public interface OkHttpConfig {
     OkHttpClient.Builder builder(OkHttpClient.Builder builder);
 }

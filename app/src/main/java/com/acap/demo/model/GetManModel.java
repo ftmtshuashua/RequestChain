@@ -8,6 +8,6 @@ package com.acap.demo.model;
  * Created by ACap on 2021/7/23 18:22
  * </pre>
  */
-public class GetmanDemo {
+public class GetManModel {
     public String message;
 }

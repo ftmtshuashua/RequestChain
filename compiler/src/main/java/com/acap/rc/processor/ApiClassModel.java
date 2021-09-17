@@ -13,19 +13,22 @@ import java.util.List;
  */
 class ApiClassModel {
 
+
+    private static final String CLASS_SUFFIX = "Service";
+
     //获得类的全量名称
     public static String getClassAllName(String packagename, String apiname) {
-        return packagename + "." + apiname + "Provider";
+        return packagename + "." + apiname + CLASS_SUFFIX;
     }
 
     //生成类的Body
     public static final String BODY_CLASS = "${package}\n" +
             "import com.acap.ec.Event;\n" +
-            "import com.acap.rc.provider.ProviderRetrofitGenerator;\n" +
+            "import com.acap.rc.service.ServiceGenerator;\n" +
             "${import}\n" +
-            "public class ${ApiClass}Provider {\n" +
-            "    private static final ${ApiClass} mApi = ProviderRetrofitGenerator.getApi(${ApiClass}.class, \"${Url}\", ${OkHttpConfig}.class, ${RetrofitConfig}.class);\n" +
-            "    private ${ApiClass}Provider() {}\n" +
+            "public class ${ApiClass}" + CLASS_SUFFIX + " {\n" +
+            "    private static final ${ApiClass} mApi = ServiceGenerator.generator(${ApiClass}.class, \"${Url}\", ${OkHttpConfig}.class, ${RetrofitConfig}.class);\n" +
+            "    private ${ApiClass}" + CLASS_SUFFIX + "() {}\n" +
             "${methods}\n" +
             "}";
 

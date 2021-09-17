@@ -1,6 +1,6 @@
 ${package}
 import com.acap.ec.Event;
-import com.acap.rc.provider.ProviderRetrofitGenerator;
+import com.acap.rc.provider.RequestGlobalConfig;
 ${import}
 public class ${ApiClass}Provider {
     private static final ${ApiClass} mApi = ProviderRetrofitGenerator.getApi(${ApiClass}.class, "${Url}", ${OkHttpConfig}.class, ${RetrofitConfig}.class);

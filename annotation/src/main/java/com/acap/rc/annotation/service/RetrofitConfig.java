@@ -1,4 +1,4 @@
-package com.acap.rc.annotation.provider;
+package com.acap.rc.annotation.service;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -11,6 +11,6 @@ import retrofit2.Retrofit;
  * Created by ACap on 2021/4/15 17:08
  * </pre>
  */
-public interface RetrofitConfigProvider {
+public interface RetrofitConfig {
     Retrofit.Builder builder(Retrofit.Builder builder, String url, OkHttpClient client);
 }

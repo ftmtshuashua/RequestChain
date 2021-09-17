@@ -125,13 +125,13 @@ public class ApiProcessor extends AbstractProcessor {
                 mModel.setOkHttpConfigClass(getTypeMirror(new Runnable() {
                     @Override
                     public void run() {
-                        annotation.configOkHttp();
+                        annotation.okhttpConfig();
                     }
                 }).toString());
                 mModel.setRetrofitConfigClass(getTypeMirror(new Runnable() {
                     @Override
                     public void run() {
-                        annotation.configRetrofit();
+                        annotation.retrofitConfig();
                     }
                 }).toString());
 
