@@ -64,7 +64,7 @@ MyApiService.getMan()
 Response<ResponseBody> execute = MyApiService.getMan2().execute();
 ```
 ```
-// 输出日志 ( EventChain 模式)
+// 输出日志
 4301-4338/com.acap.rc I/API: --> GET Start https://getman.cn/mock/route/to/demo
 4301-4338/com.acap.rc I/API: ╔═══════════════════════════════════════════════════
 4301-4338/com.acap.rc I/API: ║ GET  http/1.1  https://getman.cn/mock/route/to/demo
