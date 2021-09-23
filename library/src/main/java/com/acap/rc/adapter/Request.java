@@ -1,5 +1,6 @@
 package com.acap.rc.adapter;
 
+import com.acap.ec.BaseEvent;
 import com.acap.ec.Event;
 import com.acap.rc.schedulers.MainSchedulers;
 
@@ -16,7 +17,7 @@ import retrofit2.Response;
  * Created by ACap on 2021/4/15 15:07
  * </pre>
  */
-public class Request<T> extends Event<Object, T> implements Callback<T> {
+public class Request<T> extends BaseEvent<Object, T> implements Callback<T> {
     private Call<T> mCall;
 
 
