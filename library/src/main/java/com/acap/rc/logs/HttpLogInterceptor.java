@@ -11,6 +11,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -51,22 +52,25 @@ public class HttpLogInterceptor implements Interceptor {
     public static final int LEVEL_BODY = 0x1 << 2;
 
 
-    private static final Charset UTF8 = Charset.forName("UTF-8");
-    private String TAG;
+    private static final Charset UTF8 = StandardCharsets.UTF_8;
+    private final String TAG;
     private int mLevel = LEVEL_HEADERS | LEVEL_BODY | LEVEL_BASIC;
-    private int LIMIT_MAX_BODY_LINES = 30; //限制Body显示的最大行数
 
-    private HttpLogger mLogger = (tag, msg) -> Log.i(tag, msg);
+    //限制Body显示的最大行数
+    private final int LIMIT_MAX_BODY_LINES;
+
+    private HttpLogger mLogger = Log::i;
 
     public HttpLogInterceptor(String TAG) {
         this.TAG = TAG;
+        LIMIT_MAX_BODY_LINES = 30;
     }
 
     /**
      * 设置日志启用状态
      *
-     * @param enable
-     * @return
+     * @param enable is enable
+     * @return this
      */
     public HttpLogInterceptor setEnableLog(boolean enable) {
         if (enable) {
@@ -80,8 +84,8 @@ public class HttpLogInterceptor implements Interceptor {
     /**
      * 设置是否显示请求的Body信息
      *
-     * @param enable
-     * @return
+     * @param enable is enable
+     * @return this
      */
     public HttpLogInterceptor setEnableBodyLog(boolean enable) {
         if (enable) {
@@ -95,8 +99,8 @@ public class HttpLogInterceptor implements Interceptor {
     /**
      * 设置是否显示请求的Header信息
      *
-     * @param enable
-     * @return
+     * @param enable is enable
+     * @return this
      */
     public HttpLogInterceptor setEnableHeaderLog(boolean enable) {
         if (enable) {
@@ -110,8 +114,8 @@ public class HttpLogInterceptor implements Interceptor {
     /**
      * 设置日志显示
      *
-     * @param logger
-     * @return
+     * @param logger is logger
+     * @return this
      */
     public HttpLogInterceptor setHttpLogger(HttpLogger logger) {
         mLogger = logger;
@@ -121,7 +125,7 @@ public class HttpLogInterceptor implements Interceptor {
     /**
      * 判断是否启用日志
      *
-     * @return
+     * @return is enable log
      */
     public boolean isLogEnabled() {
         return RequestChain.isDebug() && (mLevel & LEVEL_BASIC) != 0 && mLogger != null;
@@ -155,7 +159,6 @@ public class HttpLogInterceptor implements Interceptor {
 
 
     @NotNull
-    @Override
     public Response intercept(@NotNull Chain chain) throws IOException {
         Request request = chain.request();
         //如果不显示日志，则直接跳过
@@ -187,7 +190,7 @@ public class HttpLogInterceptor implements Interceptor {
     private void assemblyRequest(List<PrintLog> logs, Chain chain) {
         Request request = chain.request();
         Headers headers = request.headers();
-        RequestBody body = request.body();
+        RequestBody requestBody = request.body();
 
         logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("{0}  {1}  {2}", request.method(), Utils.getProtocol(chain), Utils.getUrl(request))));
         for (int i = 0, size = headers.size(); i < size; i++) {
@@ -195,19 +198,24 @@ public class HttpLogInterceptor implements Interceptor {
         }
 
         try {
-            if (body != null) {
+            if (requestBody != null) {
                 Request build = request.newBuilder().build();
-
-                Buffer buffer = new Buffer();
-                build.body().writeTo(buffer);
-                MediaType mediaType = build.body().contentType();
+                RequestBody buildBody = build.body();
 
                 String data;
-                if (mediaType != null) {
-                    data = buffer.readString(mediaType.charset(UTF8));
-                } else {
-                    data = buffer.readString(UTF8);
+                Buffer buffer = new Buffer();
+                Charset mCharset = null;
+
+                if (buildBody != null) {
+                    buildBody.writeTo(buffer);
+                    MediaType mediaType = buildBody.contentType();
+                    if (mediaType != null) {
+                        mCharset = mediaType.charset(UTF8);
+                    }
                 }
+                if (mCharset == null) mCharset = UTF8;
+                data = buffer.readString(mCharset);
+
                 assemblyBody(logs, data);
             }
         } catch (Throwable e) {
@@ -243,7 +251,9 @@ public class HttpLogInterceptor implements Interceptor {
                 if (Utils.isPlaintext(body.contentType())) {
                     String data = body.string();
                     assemblyBody(logs, data);
-                    mResponse = mResponse.newBuilder().body(ResponseBody.create(body.contentType(), data)).build();
+                    mResponse = mResponse.newBuilder().body(ResponseBody.create(data, body.contentType())).build();
+
+
                 } else {
                     logs.add(new PrintLog(LEVEL_BODY, "Exception: Body == null 或者 内容不是Json类型"));
                 }
@@ -257,6 +267,10 @@ public class HttpLogInterceptor implements Interceptor {
     //日志装载：JsonBody
     private void assemblyBody(List<PrintLog> logs, String json) {
         String LINE_SEPARATOR = System.getProperty("line.separator");
+        if (LINE_SEPARATOR == null) {
+            LINE_SEPARATOR = "\n";
+        }
+
         String message;
         try {
             if (json.startsWith("{")) {
@@ -287,9 +301,9 @@ public class HttpLogInterceptor implements Interceptor {
     //输出的日志
     private static final class PrintLog {
         //日志等级
-        private int mLevel;
+        private final int mLevel;
         //日志消息
-        private String mMsg;
+        private final String mMsg;
 
         public PrintLog(int mLevel, String mMsg) {
             this.mLevel = mLevel;
@@ -300,7 +314,7 @@ public class HttpLogInterceptor implements Interceptor {
     private static final class Utils {
 
         //获得请求协议版本
-        public static final Protocol getProtocol(Chain chain) {
+        public static Protocol getProtocol(Chain chain) {
             Connection connection = chain.connection();
             if (connection == null) {
                 return Protocol.HTTP_1_1;
@@ -309,27 +323,25 @@ public class HttpLogInterceptor implements Interceptor {
         }
 
 
-        public static final String getUrl(Request request) {
+        public static String getUrl(Request request) {
             return request.url().toString();
         }
 
         //判断是否为可打印的文本
-        public static final boolean isPlaintext(MediaType mediaType) {
+        public static boolean isPlaintext(MediaType mediaType) {
             if (mediaType == null) {
                 return false;
             }
-            if (mediaType.type() != null && mediaType.type() == "text") {
+            String type = mediaType.type();
+            if ("text".equals(type)) {
                 return true;
             }
             String subtype = mediaType.subtype();
-            if (subtype != null) {
-                subtype = subtype.toLowerCase();
-                return subtype.contains("x-www-form-urlencoded") ||
-                        subtype.contains("json") ||
-                        subtype.contains("xml") ||
-                        subtype.contains("html");
-            }
-            return false;
+            subtype = subtype.toLowerCase();
+            return subtype.contains("x-www-form-urlencoded") ||
+                    subtype.contains("json") ||
+                    subtype.contains("xml") ||
+                    subtype.contains("html");
         }
     }
 }

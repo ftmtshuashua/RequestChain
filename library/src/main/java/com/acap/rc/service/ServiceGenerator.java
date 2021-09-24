@@ -35,8 +35,9 @@ public class ServiceGenerator {
      * @param okhttpConfig   Api绑定的OkHttp配置
      * @param retrofitConfig Api绑定的Retrofit配置
      * @param <T>            Api服务类型
-     * @return
+     * @return Api服务
      */
+    @SuppressWarnings("unchecked")
     public static final <T> T generator(final Class<T> service, String url, Class<? extends OkHttpConfig> okhttpConfig, Class<? extends RetrofitConfig> retrofitConfig) {
         Map<Class<?>, Object> mApiCache = mInstance.mApiCache;
         Object api = mApiCache.get(service);

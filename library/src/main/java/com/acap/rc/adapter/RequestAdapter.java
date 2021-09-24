@@ -26,6 +26,7 @@ public class RequestAdapter<R> implements CallAdapter<R, Request<R>> {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public Request<R> adapt(Call<R> call) {
         return new Request(call);
     }

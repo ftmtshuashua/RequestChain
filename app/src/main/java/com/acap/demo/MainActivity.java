@@ -34,11 +34,14 @@ public class MainActivity extends Activity {
     }
 
     private void run() {
+//        MyApiService.getMan()
+//                .listener((OnEventNextListener<?, ResponseBody>) result -> {
+//                    try { Log.i("API:打印请求结果", result.string()); } catch (IOException e) { }
+//                })
+//                .listener(new OnEventLogListener<>("APIS"))
+//                .start();
+
         MyApiService.getMan()
-                .listener((OnEventNextListener<Object, ResponseBody>) result -> {
-                    try { Log.i("API:打印请求结果", result.string()); } catch (IOException e) { }
-                })
-                .listener(new OnEventLogListener<>("APIS"))
                 .start();
 
 //        new Thread(() -> {

@@ -33,7 +33,8 @@ class ApiClassModel {
             "}";
 
     //如果返回类型为Request
-    public static final String BODY_METHOD_REQUEST = "public static final <P> Event<P, ${Void}> ${method}(${params}) {return (Event) mApi.${method}(${paramsvalue});}\n";
+    public static final String BODY_METHOD_REQUEST = "@SuppressWarnings(\"unchecked\")\n" +
+            "public static final <P> Event<P, ${Void}> ${method}(${params}) {return (Event) mApi.${method}(${paramsvalue});}\n";
     //其他返回类型
     public static final String BODY_METHOD_OTHER = "public static final ${Void} ${method}(${params}) {return mApi.${method}(${paramsvalue});}\n";
 

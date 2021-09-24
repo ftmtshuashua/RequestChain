@@ -1,7 +1,12 @@
 package com.acap.rc.processor;
 
 import com.acap.rc.annotation.Api;
+import com.squareup.javapoet.FieldSpec;
+import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.TypeSpec;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +24,7 @@ import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
+import javax.lang.model.element.Modifier;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
@@ -108,7 +114,13 @@ public class ApiProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-
+//        try {
+//            for (Element element : roundEnvironment.getElementsAnnotatedWith(Api.class)) {
+//                processApi(element);
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         try {
             for (Element element : roundEnvironment.getElementsAnnotatedWith(Api.class)) {
                 final Api annotation = element.getAnnotation(Api.class);
@@ -122,18 +134,8 @@ public class ApiProcessor extends AbstractProcessor {
                 mModel.setPackage(packagName);
                 mModel.setApiClass(apiclassname);
                 mModel.setUrl(annotation.url());
-                mModel.setOkHttpConfigClass(getTypeMirror(new Runnable() {
-                    @Override
-                    public void run() {
-                        annotation.okhttpConfig();
-                    }
-                }).toString());
-                mModel.setRetrofitConfigClass(getTypeMirror(new Runnable() {
-                    @Override
-                    public void run() {
-                        annotation.retrofitConfig();
-                    }
-                }).toString());
+                mModel.setOkHttpConfigClass(getTypeMirror(() -> annotation.okhttpConfig()).toString());
+                mModel.setRetrofitConfigClass(getTypeMirror(() -> annotation.retrofitConfig()).toString());
 
                 for (ExecutableElement method : methods) {
                     String simpleMethodName = method.getSimpleName().toString();
@@ -156,10 +158,37 @@ public class ApiProcessor extends AbstractProcessor {
                 ProcessorUtils.writer(mFiler, ApiClassModel.getClassAllName(packagName, apiclassname), mModel.toString());
             }
         } catch (Exception e) {
-
             e.printStackTrace();
         }
         return true;
+    }
+
+
+    private void processApi(Element element) throws IOException {
+        String name_cls = Utils.getName(element) + "Service";
+        String name_pkg = Utils.getPackageName(mElements, element);
+
+        TypeName type = Utils.getType(element);
+
+        //class
+        TypeSpec.Builder builder = TypeSpec.classBuilder(name_cls);
+        builder.addModifiers(Modifier.FINAL, Modifier.PUBLIC);
+        builder.addJavadoc("proxy {@link $L}", type);
+
+        //Field
+        builder.addField(FieldSpec.builder(type, "mApi", Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+//                .initializer("$L",ServiceGenerator.)
+                .build());
+
+
+        //Java file
+        JavaFile.Builder builder_java = JavaFile.builder(name_pkg, builder.build());
+
+        print("---------------------------------------------");
+        print(builder_java.build().toString());
+        print("---------------------------------------------");
+
+        builder_java.build().writeTo(mFiler);
     }
 
 

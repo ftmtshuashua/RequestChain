@@ -3,11 +3,13 @@ apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.ftmtshuashua'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_7
-    targetCompatibility = JavaVersion.VERSION_1_7
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 
 }
 
 dependencies{
     implementation project(':annotation')
+
+    implementation 'com.squareup:javapoet:1.13.0'
 }
