@@ -104,13 +104,6 @@ public class ApiProcessor extends AbstractProcessor {
 
     @Override
     public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
-//        try {
-//            for (Element element : roundEnvironment.getElementsAnnotatedWith(Api.class)) {
-//                processApi(element);
-//            }
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         try {
             for (Element element : roundEnvironment.getElementsAnnotatedWith(Api.class)) {
                 final Api annotation = element.getAnnotation(Api.class);
