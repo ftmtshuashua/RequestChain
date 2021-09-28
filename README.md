@@ -16,8 +16,8 @@ repositories {
 
 dependencies {
     implementation 'com.github.ftmtshuashua:EventChain:2.0.2'
-    implementation 'com.github.ftmtshuashua:RequestChain:2.0.2'
-    annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:2.0.2'
+    implementation 'com.github.ftmtshuashua:RequestChain:2.0.3'
+    annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:2.0.3'
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'

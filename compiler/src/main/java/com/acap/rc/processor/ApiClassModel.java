@@ -146,6 +146,11 @@ class ApiClassModel {
             this.mType = mType;
             this.mName = mName;
         }
+
+        @Override
+        public String toString() {
+            return String.format("Method(%s %s)", mType, mName);
+        }
     }
 
     public static abstract class Method {

@@ -3,6 +3,7 @@ package com.acap.rc.processor;
 import com.acap.rc.annotation.Api;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
+import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 
@@ -27,7 +28,6 @@ import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.element.VariableElement;
 import javax.lang.model.type.MirroredTypeException;
 import javax.lang.model.type.TypeMirror;
 import javax.lang.model.util.ElementFilter;
@@ -94,20 +94,10 @@ public class ApiProcessor extends AbstractProcessor {
     private List<ApiClassModel.MethodParams> getMethodParams(ExecutableElement method) {
         List<ApiClassModel.MethodParams> array = new ArrayList<>();
 
-        String[] mParamsTypeArray = null;  //参数类型列表
-        List<? extends VariableElement> parameters = method.getParameters();
-        if (!parameters.isEmpty()) { //getJson2(java.lang.String,int)
-            mParamsTypeArray = parameters.get(0).getEnclosingElement().toString()
-                    .replace(method.getSimpleName() + "(", "")
-                    .replace(")", "")
-                    .split(",");
-        }
-        if (mParamsTypeArray != null) {
-            for (int i = 0; i < mParamsTypeArray.length; i++) {
-                String type = mParamsTypeArray[i];
-                String name = parameters.get(i).getSimpleName().toString();
-                array.add(new ApiClassModel.MethodParams(type, name));
-            }
+        List<ParameterSpec> params = Utils.getParams(method.getParameters());
+        for (ParameterSpec param : params) {
+            array.add(new ApiClassModel.MethodParams(param.type.toString(), param.name));
+            mMessager.printMessage(Diagnostic.Kind.NOTE, "-----> " + new ApiClassModel.MethodParams(param.type.toString(), param.name).toString());
         }
         return array;
     }

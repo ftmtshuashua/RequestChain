@@ -3,9 +3,12 @@ package com.acap.demo;
 import com.acap.rc.adapter.Request;
 import com.acap.rc.annotation.Api;
 
+import java.util.Map;
+
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.QueryMap;
 
 /**
  * <pre>
@@ -22,4 +25,7 @@ public interface MyApi {
 
     @GET("mock/route/to/demo")
     Call<ResponseBody> getMan2();
+
+    @GET("mock/route/to/demo")
+    Request<ResponseBody> test(@QueryMap Map<String, Object> arg);
 }
