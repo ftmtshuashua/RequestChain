@@ -97,7 +97,6 @@ public class ApiProcessor extends AbstractProcessor {
         List<ParameterSpec> params = Utils.getParams(method.getParameters());
         for (ParameterSpec param : params) {
             array.add(new ApiClassModel.MethodParams(param.type.toString(), param.name));
-            mMessager.printMessage(Diagnostic.Kind.NOTE, "-----> " + new ApiClassModel.MethodParams(param.type.toString(), param.name).toString());
         }
         return array;
     }
