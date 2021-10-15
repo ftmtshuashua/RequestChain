@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
     }
 
     private void run() {
-//        MyApiService.getMan()
-//                .start();
+        MyApiService.getMan()
+                .start();
     }
 }
