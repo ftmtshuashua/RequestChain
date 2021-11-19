@@ -1,8 +1,7 @@
 package com.acap.rc.adapter;
 
 import com.acap.ec.BaseEvent;
-import com.acap.ec.Event;
-import com.acap.rc.schedulers.MainSchedulers;
+import com.acap.rc.schedulers.RequestThreadHelper;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,9 +32,19 @@ public class Request<T> extends BaseEvent<Object, T> implements Callback<T> {
 
     @Override
     public void onResponse(Call<T> call, Response<T> response) {
-        MainSchedulers.run(() -> {
+        RequestThreadHelper.main(() -> {
             if (response.isSuccessful()) {
-                next(response.body());
+                T body = response.body();
+                if (body instanceof ApiBody) {
+                    ApiBody apiBody = (ApiBody) body;
+                    if (apiBody.isSuccessful()) {
+                        next(body);
+                    } else {
+                        error(apiBody.getError());
+                    }
+                } else {
+                    next(body);
+                }
             } else {
                 error(new HttpException(response));
             }
@@ -45,7 +54,7 @@ public class Request<T> extends BaseEvent<Object, T> implements Callback<T> {
 
     @Override
     public void onFailure(Call<T> call, Throwable t) {
-        MainSchedulers.run(() -> error(t));
+        RequestThreadHelper.main(() -> error(t));
     }
 
 }

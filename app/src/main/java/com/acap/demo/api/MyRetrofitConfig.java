@@ -1,7 +1,10 @@
-package com.acap.rc.annotation.service;
+package com.acap.demo.api;
+
+import com.acap.rc.annotation.service.RetrofitConfig;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * <pre>
@@ -11,11 +14,12 @@ import retrofit2.Retrofit;
  * Created by ACap on 2021/9/17 14:37
  * </pre>
  */
-public final class NullRetrofitConfig implements RetrofitConfig {
+public final class MyRetrofitConfig implements RetrofitConfig {
 
     @Override
     public Retrofit.Builder builder(Retrofit.Builder builder, String url, OkHttpClient client) {
         builder.baseUrl(url).client(client);
+        builder.addConverterFactory(GsonConverterFactory.create());
         return builder;
     }
 }

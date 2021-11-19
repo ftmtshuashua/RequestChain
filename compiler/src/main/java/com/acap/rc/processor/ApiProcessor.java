@@ -1,36 +1,35 @@
 package com.acap.rc.processor;
 
-import com.acap.rc.annotation.Api;
+
+import com.acap.rc.annotation.ApiDynamicUrl;
+import com.acap.rc.annotation.ApiOkHttpConfig;
+import com.acap.rc.annotation.ApiRetrofitConfig;
+import com.acap.rc.annotation.ApiUrl;
+import com.acap.rc.annotation.service.DefaultOkHttpConfig;
+import com.acap.rc.annotation.service.DefaultRetrofitConfig;
+import com.acap.rc.service.ServiceGenerator;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
-import com.squareup.javapoet.ParameterSpec;
-import com.squareup.javapoet.TypeName;
+import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.annotation.processing.AbstractProcessor;
 import javax.annotation.processing.Filer;
 import javax.annotation.processing.Messager;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.annotation.processing.RoundEnvironment;
-import javax.annotation.processing.SupportedAnnotationTypes;
 import javax.annotation.processing.SupportedSourceVersion;
 import javax.lang.model.SourceVersion;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
-import javax.lang.model.element.PackageElement;
 import javax.lang.model.element.TypeElement;
-import javax.lang.model.type.MirroredTypeException;
-import javax.lang.model.type.TypeMirror;
-import javax.lang.model.util.ElementFilter;
+import javax.lang.model.element.VariableElement;
 import javax.lang.model.util.Elements;
 import javax.tools.Diagnostic;
 
@@ -43,13 +42,18 @@ import javax.tools.Diagnostic;
  * </pre>
  */
 
-//@AutoService(Processor.class)
-@SupportedAnnotationTypes("com.acap.rc.annotation.Api")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class ApiProcessor extends AbstractProcessor {
-    private static final List<String> objectMethod = Arrays.asList("getClass", "hashCode", "equals", "toString", "notify", "notifyAll", "wait");
+    private static final List<String> mObjectMethod = Arrays.asList("getClass", "hashCode", "equals", "toString", "notify", "notifyAll", "wait");
     private static final String REQUEST_CLASS_TYPE = "com.acap.rc.adapter.Request";
 
+    @Override
+    public Set<String> getSupportedAnnotationTypes() {
+        Set<String> set = new HashSet<>();
+        set.add(ApiUrl.class.getName());
+        set.add(ApiDynamicUrl.class.getName());
+        return set;
+    }
 
     private Elements mElements;
     private Messager mMessager;
@@ -65,113 +69,91 @@ public class ApiProcessor extends AbstractProcessor {
         mElements = processingEnvironment.getElementUtils();
         mMessager = processingEnvironment.getMessager();
         mFiler = processingEnvironment.getFiler();
-
-    }
-
-    private TypeMirror getTypeMirror(Runnable runnable) {
-        try {
-            runnable.run();
-        } catch (MirroredTypeException mte) {
-            return mte.getTypeMirror();
-        }
-        return null;
-    }
-
-    //获得泛型的类型
-    private String getGenericType(String classtype) {
-
-        Matcher matcher = Pattern.compile("<(.*?)>$").matcher(classtype);
-        boolean isHas = matcher.find();
-        if (isHas) {
-            String group = matcher.group(0);
-            String substring = group.substring(1, group.length() - 1);
-            return substring;
-        }
-        return classtype;
-    }
-
-    //获得方法的参数
-    private List<ApiClassModel.MethodParams> getMethodParams(ExecutableElement method) {
-        List<ApiClassModel.MethodParams> array = new ArrayList<>();
-
-        List<ParameterSpec> params = Utils.getParams(method.getParameters());
-        for (ParameterSpec param : params) {
-            array.add(new ApiClassModel.MethodParams(param.type.toString(), param.name));
-        }
-        return array;
     }
 
     @Override
-    public boolean process(Set<? extends TypeElement> set, RoundEnvironment roundEnvironment) {
+    public boolean process(Set<? extends TypeElement> set, RoundEnvironment environment) {
         try {
-            for (Element element : roundEnvironment.getElementsAnnotatedWith(Api.class)) {
-                final Api annotation = element.getAnnotation(Api.class);
-                String apiclassname = element.getSimpleName().toString();
-                PackageElement classPackageName = mElements.getPackageOf(element);
-                String packagName = classPackageName.getQualifiedName().toString();
-                List<ExecutableElement> methods = ElementFilter.methodsIn(mElements.getAllMembers((TypeElement) element));
-
-
-                ApiClassModel mModel = new ApiClassModel();
-                mModel.setPackage(packagName);
-                mModel.setApiClass(apiclassname);
-                mModel.setUrl(annotation.url());
-                mModel.setOkHttpConfigClass(getTypeMirror(() -> annotation.okhttpConfig()).toString());
-                mModel.setRetrofitConfigClass(getTypeMirror(() -> annotation.retrofitConfig()).toString());
-
-                for (ExecutableElement method : methods) {
-                    String simpleMethodName = method.getSimpleName().toString();
-                    if (objectMethod.contains(simpleMethodName)) continue;
-
-                    String returnType = method.getReturnType().toString(); //com.acap.rc.adapter.Request<com.acap.rc.bean.BeanData1>
-                    ApiClassModel.Method mMethod;
-                    if (returnType.startsWith(REQUEST_CLASS_TYPE)) {
-                        mMethod = new ApiClassModel.RequestMethod(simpleMethodName, getGenericType(returnType));
-                    } else {
-                        mMethod = new ApiClassModel.OtherMethod(simpleMethodName, returnType);
-                    }
-
-                    List<ApiClassModel.MethodParams> params = getMethodParams(method);
-                    for (ApiClassModel.MethodParams param : params) {
-                        mMethod.addParams(param);
-                    }
-                    mModel.addMethod(mMethod);
-                }
-                ProcessorUtils.writer(mFiler, ApiClassModel.getClassAllName(packagName, apiclassname), mModel.toString());
-            }
+            ApiUrl(environment);
+            ApiDynamicUrl(environment);
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
         return true;
     }
 
+    private final String mApiFieldName = "mApi";
 
-    private void processApi(Element element) throws IOException {
-        String name_cls = Utils.getName(element) + "Service";
-        String name_pkg = Utils.getPackageName(mElements, element);
-
-        TypeName type = Utils.getType(element);
-
-        //class
-        TypeSpec.Builder builder = TypeSpec.classBuilder(name_cls);
-        builder.addModifiers(Modifier.FINAL, Modifier.PUBLIC);
-        builder.addJavadoc("proxy {@link $L}", type);
-
-        //Field
-        builder.addField(FieldSpec.builder(type, "mApi", Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
-//                .initializer("$L",ServiceGenerator.)
-                .build());
-
-
-        //Java file
-        JavaFile.Builder builder_java = JavaFile.builder(name_pkg, builder.build());
-
-        print("---------------------------------------------");
-        print(builder_java.build().toString());
-        print("---------------------------------------------");
-
-        builder_java.build().writeTo(mFiler);
+    /* 获得 OkHttp 配置 */
+    private Object getOKConfig(Element element) {
+        ApiOkHttpConfig a = element.getAnnotation(ApiOkHttpConfig.class);
+        if (a != null) {
+            return Utils.getTypeMirror(() -> a.value());
+        }
+        return DefaultOkHttpConfig.class;
     }
 
+    /* 获得 Retrofit 配置 */
+    private Object getRtConfig(Element element) {
+        ApiRetrofitConfig a = element.getAnnotation(ApiRetrofitConfig.class);
+        if (a != null) {
+            return Utils.getTypeMirror(() -> a.value());
+        }
+        return DefaultRetrofitConfig.class;
+    }
+
+    /* 获得生成类的名称 */
+    private String getGenerateClassName(Element element) {
+        return String.format("%sService", Utils.getName(element));
+    }
+
+    private void ApiUrl(RoundEnvironment environment) throws Exception {
+        for (Element element : environment.getElementsAnnotatedWith(ApiUrl.class)) {
+            print("ApiUrl:" + Utils.getName(element));
+
+            TypeSpec.Builder cls = TypeSpec.classBuilder(getGenerateClassName(element));
+            cls.addModifiers(Modifier.FINAL, Modifier.PUBLIC);
+            cls.addField(FieldSpec.builder(Utils.getType(element), mApiFieldName, Modifier.PRIVATE, Modifier.STATIC, Modifier.FINAL)
+                    .initializer("$T.generator($T.class,$S,$T.class,$T.class)", ServiceGenerator.class, Utils.getType(element), element.getAnnotation(ApiUrl.class).value(), getOKConfig(element), getRtConfig(element))
+                    .build());
+            cls.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PRIVATE).build());
+
+            List<ExecutableElement> methods = Utils.getMethods(mElements, element);
+            for (ExecutableElement method : methods) {
+                String methodName = method.getSimpleName().toString();
+                if (mObjectMethod.contains(methodName)) continue;
+
+
+                MethodSpec.Builder builder = MethodSpec.methodBuilder(methodName);
+                builder.addModifiers(Modifier.PUBLIC, Modifier.STATIC);
+                builder.returns(Utils.getType(method.getReturnType()));
+
+                StringBuilder parameters = new StringBuilder();
+                for (VariableElement parameter : method.getParameters()) {
+                    String argsName = parameter.getSimpleName().toString();
+                    builder.addParameter(Utils.getType(parameter.asType()), argsName);
+                    parameters.append(",").append(argsName);
+                }
+                if (parameters.length() > 0) parameters.deleteCharAt(0);
+                builder.addStatement("return $L.$L($L)", mApiFieldName, methodName, parameters.toString());
+
+                cls.addMethod(builder.build());
+            }
+
+            JavaFile.Builder builder_java = JavaFile.builder(Utils.getPackageName(mElements, element), cls.build());
+            print("---------------------------------------------");
+            print(builder_java.build().toString());
+            print("---------------------------------------------");
+            builder_java.build().writeTo(mFiler);
+        }
+    }
+
+    private void ApiDynamicUrl(RoundEnvironment environment) throws Exception {
+        for (Element element : environment.getElementsAnnotatedWith(ApiDynamicUrl.class)) {
+            print("ApiDynamicUrl:" + Utils.getName(element));
+
+        }
+
+    }
 
 }

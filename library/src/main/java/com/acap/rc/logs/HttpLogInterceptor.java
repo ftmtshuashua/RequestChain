@@ -57,13 +57,12 @@ public class HttpLogInterceptor implements Interceptor {
     private int mLevel = LEVEL_HEADERS | LEVEL_BODY | LEVEL_BASIC;
 
     //限制Body显示的最大行数
-    private final int LIMIT_MAX_BODY_LINES;
+    private final int LIMIT_MAX_BODY_LINES = 30;
 
     private HttpLogger mLogger = Log::i;
 
     public HttpLogInterceptor(String TAG) {
         this.TAG = TAG;
-        LIMIT_MAX_BODY_LINES = 30;
     }
 
     /**
@@ -131,6 +130,13 @@ public class HttpLogInterceptor implements Interceptor {
         return RequestChain.isDebug() && (mLevel & LEVEL_BASIC) != 0 && mLogger != null;
     }
 
+    private boolean isPrint(int level) {
+        if ((mLevel & level) == 0 || !isLogEnabled()) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * 打印日志
      *
@@ -146,8 +152,23 @@ public class HttpLogInterceptor implements Interceptor {
         }
     }
 
-    //日志输出
     private void print(List<PrintLog> logs) {
+        if (logs != null && !logs.isEmpty()) {
+            StringBuffer sb = new StringBuffer(" \n");
+            if (isPrint(LEVEL_BASIC)) sb.append("╔═══════════════════════════════════════════════════\n");
+            for (PrintLog log : logs) {
+                if (isPrint(log.mLevel)) sb.append("║ ").append(log.mMsg).append("\n");
+            }
+            if (isPrint(LEVEL_BASIC)) sb.append("╚═══════════════════════════════════════════════════\n");
+
+            if (mLogger != null) {
+                mLogger.print(TAG, sb.toString());
+            }
+        }
+    }
+
+    //日志输出
+    private void print2(List<PrintLog> logs) {
         if (logs != null && !logs.isEmpty()) {
             print(LEVEL_BASIC, "╔═══════════════════════════════════════════════════");
             for (PrintLog log : logs) {
@@ -252,8 +273,6 @@ public class HttpLogInterceptor implements Interceptor {
                     String data = body.string();
                     assemblyBody(logs, data);
                     mResponse = mResponse.newBuilder().body(ResponseBody.create(data, body.contentType())).build();
-
-
                 } else {
                     logs.add(new PrintLog(LEVEL_BODY, "Exception: Body == null 或者 内容不是Json类型"));
                 }

@@ -12,8 +12,11 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.ExecutableElement;
 import javax.lang.model.element.Modifier;
 import javax.lang.model.element.Name;
+import javax.lang.model.element.TypeElement;
 import javax.lang.model.element.VariableElement;
+import javax.lang.model.type.MirroredTypeException;
 import javax.lang.model.type.TypeMirror;
+import javax.lang.model.util.ElementFilter;
 import javax.lang.model.util.Elements;
 
 /**
@@ -43,6 +46,16 @@ class Utils {
     public static TypeName getType(TypeMirror returnType) {
         return TypeName.get(returnType);
     }
+
+    public static TypeMirror getTypeMirror(Runnable runnable) {
+        try {
+            runnable.run();
+        } catch (MirroredTypeException mte) {
+            return mte.getTypeMirror();
+        }
+        return null;
+    }
+
 
     /**
      * 获得名称
@@ -84,6 +97,11 @@ class Utils {
     public static Modifier[] getModifiers(Element element) {
         Set<Modifier> modifiers = element.getModifiers();
         return modifiers.toArray(new Modifier[modifiers.size()]);
+    }
+
+    /** 获得方法列表 */
+    public static List<ExecutableElement> getMethods(Elements elements, Element element) {
+        return ElementFilter.methodsIn(elements.getAllMembers((TypeElement) element));
     }
 
     /**
@@ -148,7 +166,6 @@ class Utils {
         }
         return array;
     }
-
 
     /**
      * 将参数列表转为传输字符串

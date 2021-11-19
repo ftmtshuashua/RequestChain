@@ -2,6 +2,7 @@ package com.acap.rc.service;
 
 import com.acap.rc.RequestChain;
 import com.acap.rc.adapter.RequestAdapterFactory;
+import com.acap.rc.annotation.service.DynamicUrl;
 import com.acap.rc.annotation.service.OkHttpConfig;
 import com.acap.rc.annotation.service.RetrofitConfig;
 import com.acap.rc.logs.HttpLogInterceptor;
@@ -26,6 +27,14 @@ public class ServiceGenerator {
     private static final ServiceGenerator mInstance = new ServiceGenerator();
 
     private Map<Class<?>, Object> mApiCache = new HashMap<>();
+
+    public static final <T> T generator(final Class<T> service, Class<? extends DynamicUrl> url, Class<? extends OkHttpConfig> okhttpConfig, Class<? extends RetrofitConfig> retrofitConfig) {
+        try {
+            return generator(service, url.newInstance().url(), okhttpConfig, retrofitConfig);
+        } catch (Throwable e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     /**
      * 获得API
