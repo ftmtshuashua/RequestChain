@@ -8,9 +8,16 @@ import retrofit2.Retrofit;
  * Tip:
  *      Retrofit的配置提供器
  *
- * Created by ACap on 2021/4/15 17:08
+ * @author A·Cap
+ * @date 2021/11/18 14:12
  * </pre>
  */
 public interface RetrofitConfig {
+    /**
+     * {@link Retrofit} 的配置接口
+     *
+     * @param builder 配置之前的 {@link Retrofit.Builder}
+     * @return 配置完成的  {@link Retrofit.Builder}
+     */
     Retrofit.Builder builder(Retrofit.Builder builder, String url, OkHttpClient client);
 }

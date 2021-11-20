@@ -5,7 +5,7 @@ import com.acap.rc.annotation.service.RetrofitConfig;
 /**
  * <pre>
  * Tip:
- *      OkHttp 配置,可选的配置
+ *  {@link retrofit2.Retrofit} 配置,这是一个可选的配置
  *
  * @author A·Cap
  * @date 2021/11/18 14:12
@@ -14,7 +14,9 @@ import com.acap.rc.annotation.service.RetrofitConfig;
 public @interface ApiRetrofitConfig {
 
     /**
-     * 指定OkHttp的配置
+     * 指定服务的 {@link retrofit2.Retrofit} 配置
+     *
+     * @return 服务的配置类
      */
     Class<? extends RetrofitConfig> value();
 

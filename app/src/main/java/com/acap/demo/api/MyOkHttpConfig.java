@@ -2,6 +2,8 @@ package com.acap.demo.api;
 
 import com.acap.rc.annotation.service.OkHttpConfig;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 
 /**
@@ -16,6 +18,9 @@ public final class MyOkHttpConfig implements OkHttpConfig {
 
     @Override
     public OkHttpClient.Builder builder(OkHttpClient.Builder builder) {
+        builder.connectTimeout(1, TimeUnit.MINUTES);
+        builder.writeTimeout(3, TimeUnit.MINUTES);
+        builder.readTimeout(3, TimeUnit.MINUTES);
         return builder;
     }
 }

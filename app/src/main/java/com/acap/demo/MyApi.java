@@ -1,8 +1,10 @@
 package com.acap.demo;
 
+import com.acap.demo.api.MyOkHttpConfig;
 import com.acap.demo.api.MyRetrofitConfig;
 import com.acap.demo.model.BaseModel;
 import com.acap.rc.adapter.Request;
+import com.acap.rc.annotation.ApiOkHttpConfig;
 import com.acap.rc.annotation.ApiRetrofitConfig;
 import com.acap.rc.annotation.ApiUrl;
 
@@ -23,9 +25,15 @@ import retrofit2.http.QueryMap;
  * </pre>
  */
 @ApiUrl("https://getman.cn/")
-//@ApiOkHttpConfig(MyOkHttpConfig.class)
+//@ApiVariableUrl(RandomUrlConfig.class)
+@ApiOkHttpConfig(MyOkHttpConfig.class)
 @ApiRetrofitConfig(MyRetrofitConfig.class)
 public interface MyApi {
+
+    /**
+     * Doc内容 {@link MyOkHttpConfig}
+     * xxx
+     */
     @GET("mock/route/to/demo")
     Request<ResponseBody> getResponseBody();
 

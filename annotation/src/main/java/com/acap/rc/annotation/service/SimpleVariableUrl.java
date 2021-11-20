@@ -8,10 +8,10 @@ package com.acap.rc.annotation.service;
  * @date 2021/11/18 16:39
  * </pre>
  */
-public class SimpleDynamicUrl implements DynamicUrl{
-    private String url;
+public class SimpleVariableUrl implements VariableUrl {
+    private final String url;
 
-    public SimpleDynamicUrl(String url) {
+    public SimpleVariableUrl(String url) {
         this.url = url;
     }
 

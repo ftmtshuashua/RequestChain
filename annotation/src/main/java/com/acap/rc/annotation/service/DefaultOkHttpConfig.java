@@ -7,10 +7,11 @@ import okhttp3.OkHttpClient;
  * Tip:
  *
  *
- * Created by ACap on 2021/9/17 14:37
+ * @author A·Cap
+ * @date 2021/11/18 14:12
  * </pre>
  */
-public final class DefaultOkHttpConfig implements OkHttpConfig {
+public class DefaultOkHttpConfig implements OkHttpConfig {
 
     @Override
     public OkHttpClient.Builder builder(OkHttpClient.Builder builder) {

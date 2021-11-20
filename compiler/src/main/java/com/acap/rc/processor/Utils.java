@@ -2,6 +2,7 @@ package com.acap.rc.processor;
 
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeName;
+import com.sun.tools.javac.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -35,9 +36,6 @@ class Utils {
 
     /**
      * 获得元素的Class类型
-     *
-     * @param element
-     * @return
      */
     public static TypeName getType(Element element) {
         return TypeName.get(element.asType());
@@ -59,20 +57,20 @@ class Utils {
 
     /**
      * 获得名称
-     *
-     * @param element
-     * @return
      */
     public static String getName(Element element) {
         return element.getSimpleName().toString();
     }
 
     /**
+     * 获得完整的类名
+     */
+    public static String getFullName(Element element) {
+        return element.asType().toString();
+    }
+
+    /**
      * 获得包名
-     *
-     * @param mElements
-     * @param element
-     * @return
      */
     public static String getPackageName(Elements mElements, Element element) {
         return mElements.getPackageOf(element).getQualifiedName().toString();
@@ -80,9 +78,6 @@ class Utils {
 
     /**
      * 获得属性的值
-     *
-     * @param element
-     * @return
      */
     public static Object getValue(VariableElement element) {
         return element.getConstantValue();
@@ -90,25 +85,21 @@ class Utils {
 
     /**
      * 获得属性的修饰符
-     *
-     * @param element
-     * @return
      */
     public static Modifier[] getModifiers(Element element) {
         Set<Modifier> modifiers = element.getModifiers();
         return modifiers.toArray(new Modifier[modifiers.size()]);
     }
 
-    /** 获得方法列表 */
+    /**
+     * 获得方法列表
+     */
     public static List<ExecutableElement> getMethods(Elements elements, Element element) {
         return ElementFilter.methodsIn(elements.getAllMembers((TypeElement) element));
     }
 
     /**
      * 判断是否包含 final 修饰器
-     *
-     * @param element
-     * @return
      */
     public static boolean isFinal(Element element) {
         Set<Modifier> modifiers = element.getModifiers();
@@ -117,9 +108,6 @@ class Utils {
 
     /**
      * 属于Object,并且不能被操作的方法
-     *
-     * @param method
-     * @return
      */
     public static boolean isObjectMethod(ExecutableElement method) {
         Name simpleName = method.getSimpleName();
@@ -137,9 +125,6 @@ class Utils {
 
     /**
      * 判断是否包含 static 修饰器
-     *
-     * @param element
-     * @return
      */
     public static boolean isStatic(Element element) {
         Set<Modifier> modifiers = element.getModifiers();
@@ -155,9 +140,6 @@ class Utils {
 
     /**
      * 获得参数
-     *
-     * @param parameters
-     * @return
      */
     public static List<ParameterSpec> getParams(List<? extends VariableElement> parameters) {
         List<ParameterSpec> array = new ArrayList<>();
@@ -169,9 +151,6 @@ class Utils {
 
     /**
      * 将参数列表转为传输字符串
-     *
-     * @param params
-     * @return
      */
     public static String transferParams(List<ParameterSpec> params) {
         StringBuilder sb = new StringBuilder();
@@ -186,8 +165,6 @@ class Utils {
 
     /**
      * 将参数列表转为字符串的参数列表
-     *
-     * @return
      */
     public static String flatParams(List<ParameterSpec> params) {
         StringBuilder sb = new StringBuilder();
@@ -203,9 +180,6 @@ class Utils {
 
     /**
      * 将修饰器列表转为字符串列表
-     *
-     * @param modifiers
-     * @return
      */
     public static String flatModifiers(Set<Modifier> modifiers) {
         StringBuilder sb = new StringBuilder();
@@ -218,9 +192,6 @@ class Utils {
 
     /**
      * 获得异常类型列表
-     *
-     * @param method
-     * @return
      */
     public static Iterable<? extends TypeName> getExceptions(ExecutableElement method) {
         List<? extends TypeMirror> thrownTypes = method.getThrownTypes();
@@ -231,4 +202,28 @@ class Utils {
         return array;
     }
 
+    /**
+     * unicode 转中文
+     */
+    public static String unicode2String(String unicode) {
+        if (unicode == null || unicode.isEmpty()) {
+            return null;
+        }
+
+        StringBuilder sb = new StringBuilder();
+        int i = -1;
+        int pos = 0;
+
+        while ((i = unicode.indexOf("\\u", pos)) != -1) {
+            sb.append(unicode.substring(pos, i));
+            if (i + 5 < unicode.length()) {
+                pos = i + 6;
+                sb.append((char) Integer.parseInt(unicode.substring(i + 2, i + 6), 16));
+            }
+        }
+        //如果pos位置后，有非中文字符，直接添加
+        sb.append(unicode.substring(pos));
+
+        return sb.toString();
+    }
 }

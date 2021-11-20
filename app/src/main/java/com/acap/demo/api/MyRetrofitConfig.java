@@ -19,7 +19,6 @@ public final class MyRetrofitConfig implements RetrofitConfig {
     @Override
     public Retrofit.Builder builder(Retrofit.Builder builder, String url, OkHttpClient client) {
         builder.baseUrl(url).client(client);
-        builder.addConverterFactory(GsonConverterFactory.create());
         return builder;
     }
 }

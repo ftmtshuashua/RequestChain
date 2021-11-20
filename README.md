@@ -33,7 +33,7 @@ RequestChain.setDebug(BuildConfig.DEBUG);
 // 定义 API
 import com.acap.rc.adapter.Request;
 import com.acap.rc.annotation.ApiUrl;
-import com.acap.rc.annotation.ApiDynamicUrl;
+import com.acap.rc.annotation.ApiVariableUrl;
 import com.acap.rc.annotation.ApiOkHttpConfig;
 import com.acap.rc.annotation.ApiRetrofitConfig;
 import okhttp3.ResponseBody;
@@ -42,7 +42,7 @@ import retrofit2.Call;
 
 @ApiOkHttpConfig(MyOkHttpConfig.class)      // 可选
 @ApiRetrofitConfig(MyRetrofitConfig.class)  // 可选
-@ApiUrl("https://getman.cn/") or @ApiDynamicUrl()
+@ApiUrl("https://getman.cn/") or @ApiVariableUrl(MyVariableUrl.class)
 public interface MyApi {// Build 之后自动生成 MyApiService
 
     @GET("mock/route/to/demo")
@@ -58,7 +58,7 @@ public interface MyApi {// Build 之后自动生成 MyApiService
     Request<BaseModel<String>> getModelError();
     
     @GET("mock/route/to/demo")
-    Call<ResponseBody> getCall(@Query("1") String str, @Query("2") String str2, @Query("3") String str3);
+    Call<ResponseBody> getCall(@Query("arg") String str);
 }
 ```
 
@@ -71,7 +71,7 @@ MyApiService.getResponseBody()
                 .start();
 
 // 使用 API ( retrofit2 模式)
-Response<ResponseBody> execute = MyApiService.getMan2().execute();
+Response<ResponseBody> execute = MyApiService.getCall("s").execute();
 ```
 
 返回数据的 Model 中可实现 ApiBody 的方法,实现请求异常的内部扭转。可以通过 OnEventErrorListener 监听失败信息

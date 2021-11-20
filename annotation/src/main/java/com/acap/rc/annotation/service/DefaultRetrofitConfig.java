@@ -8,14 +8,14 @@ import retrofit2.Retrofit;
  * Tip:
  *
  *
- * Created by ACap on 2021/9/17 14:37
+ * @author A·Cap
+ * @date 2021/11/18 14:12
  * </pre>
  */
-public final class DefaultRetrofitConfig implements RetrofitConfig {
+public class DefaultRetrofitConfig implements RetrofitConfig {
 
     @Override
     public Retrofit.Builder builder(Retrofit.Builder builder, String url, OkHttpClient client) {
-        builder.baseUrl(url).client(client);
         return builder;
     }
 }
