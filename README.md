@@ -16,7 +16,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.ftmtshuashua:RequestChain:2.0.4'
+    implementation 'com.github.ftmtshuashua.RequestChain:library:2.0.4'
     annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:2.0.4'
 }
 ```

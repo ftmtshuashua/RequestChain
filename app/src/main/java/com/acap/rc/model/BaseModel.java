@@ -1,4 +1,4 @@
-package com.acap.demo.model;
+package com.acap.rc.model;
 
 import com.acap.rc.adapter.ApiBody;
 

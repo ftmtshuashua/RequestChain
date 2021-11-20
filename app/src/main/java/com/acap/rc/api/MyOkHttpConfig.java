@@ -1,4 +1,4 @@
-package com.acap.demo.api;
+package com.acap.rc.api;
 
 import com.acap.rc.annotation.service.OkHttpConfig;
 

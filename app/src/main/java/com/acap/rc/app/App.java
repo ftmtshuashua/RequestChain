@@ -1,8 +1,7 @@
-package com.acap.demo.app;
+package com.acap.rc.app;
 
 import android.app.Application;
 
-import com.acap.rc.BuildConfig;
 import com.acap.rc.RequestChain;
 
 /**
@@ -17,6 +16,6 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        RequestChain.setDebug(BuildConfig.DEBUG);
+        RequestChain.setDebug(true);
     }
 }

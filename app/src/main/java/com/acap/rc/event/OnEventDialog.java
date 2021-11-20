@@ -1,4 +1,4 @@
-package com.acap.demo.event;
+package com.acap.rc.event;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

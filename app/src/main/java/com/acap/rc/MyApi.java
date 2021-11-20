@@ -1,8 +1,8 @@
-package com.acap.demo;
+package com.acap.rc;
 
-import com.acap.demo.api.MyOkHttpConfig;
-import com.acap.demo.api.MyRetrofitConfig;
-import com.acap.demo.model.BaseModel;
+import com.acap.rc.api.MyOkHttpConfig;
+import com.acap.rc.api.MyRetrofitConfig;
+import com.acap.rc.model.BaseModel;
 import com.acap.rc.adapter.Request;
 import com.acap.rc.annotation.ApiOkHttpConfig;
 import com.acap.rc.annotation.ApiRetrofitConfig;

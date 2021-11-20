@@ -1,9 +1,6 @@
-package com.acap.demo
+package com.acap.rc
 
-import com.acap.demo.event.OnEventDialog
-import com.acap.demo.model.BaseModel
-import com.acap.ec.Events
-import com.acap.ec.action.Apply
+import com.acap.rc.event.OnEventDialog
 import com.acap.ec.listener.OnEventLogListener
 
 

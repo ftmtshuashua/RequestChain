@@ -1,10 +1,9 @@
-package com.acap.demo.api;
+package com.acap.rc.api;
 
 import com.acap.rc.annotation.service.RetrofitConfig;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * <pre>

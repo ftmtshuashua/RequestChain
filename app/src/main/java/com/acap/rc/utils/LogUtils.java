@@ -1,4 +1,4 @@
-package com.acap.demo.utils;
+package com.acap.rc.utils;
 
 import android.util.Log;
 

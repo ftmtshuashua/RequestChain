@@ -1,4 +1,4 @@
-package com.acap.demo.model;
+package com.acap.rc.model;
 
 /**
  * <pre>

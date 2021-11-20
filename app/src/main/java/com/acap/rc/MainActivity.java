@@ -1,10 +1,10 @@
-package com.acap.demo;
+package com.acap.rc;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.Button;
 
-import com.acap.demo.event.OnEventDialog;
+import com.acap.rc.event.OnEventDialog;
 import com.acap.ec.listener.OnEventLogListener;
 
 /**

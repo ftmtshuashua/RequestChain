@@ -1,5 +1,5 @@
+include ':library'
 include ':annotation-Runtime'
 include ':annotation'
-include ':library'
-include ':app'
 include ':compiler'
+include ':app'
