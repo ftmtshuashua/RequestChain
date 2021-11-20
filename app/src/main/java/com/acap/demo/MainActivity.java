@@ -30,11 +30,6 @@ public class MainActivity extends Activity {
     }
 
     private void run() {
-//        BaseModel<String> src = new BaseModel<>();
-//        src.code=0;
-//        src.msg="";
-//        src.result="helloworld";
-//        LogUtils.e(new Gson().toJson(src));
         MyApiService.getResponseBody()
 //                .chain(MyApiService.getModelError())
                 .chain(MyApiService.getModel())
