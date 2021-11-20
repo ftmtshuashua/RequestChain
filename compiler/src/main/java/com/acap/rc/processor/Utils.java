@@ -2,7 +2,6 @@ package com.acap.rc.processor;
 
 import com.squareup.javapoet.ParameterSpec;
 import com.squareup.javapoet.TypeName;
-import com.sun.tools.javac.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -47,19 +47,12 @@ android {
 }
 
 dependencies {
-
-    implementation project(':library')
-    annotationProcessor project(':compiler')
-
     implementation 'com.github.ftmtshuashua:ToolKit:2.0.0-pre-1'
 
+//    implementation project(':library')
+//    annotationProcessor project(':compiler')
 
-//    implementation 'com.github.ftmtshuashua:RequestChain:2.0.3'
-//    annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:2.0.3'
-
-//    implementation 'com.github.ftmtshuashua:EventChain:2.0.2'
-//    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-//    implementation 'com.squareup.okhttp3:okhttp:4.9.1'
-//    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'  //可选
+    implementation 'com.github.ftmtshuashua:RequestChain:2.0.4'
+    annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:2.0.4'
 
 }

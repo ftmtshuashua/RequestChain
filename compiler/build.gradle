@@ -1,13 +1,13 @@
 apply plugin: 'java'
 apply plugin: 'com.github.dcendents.android-maven'
-group='com.github.ftmtshuashua'
+group = 'com.github.ftmtshuashua'
 
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 
     sourceSets {
-        main{
+        main {
             java {
                 srcDir "src/main"
                 srcDir "src/runtime"
@@ -16,7 +16,8 @@ java {
     }
 }
 
-dependencies{
+dependencies {
+    compileOnly fileTree(dir: 'libs-runtime', include: ['*.jar'])
     implementation project(':annotation')
 
     implementation 'com.squareup:javapoet:1.13.0'
