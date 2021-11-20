@@ -15,6 +15,7 @@ import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import com.sun.source.doctree.DocCommentTree;
+import com.sun.source.util.TreePath;
 import com.sun.tools.javac.api.JavacTrees;
 
 import java.lang.reflect.Field;
@@ -130,14 +131,16 @@ public class ApiProcessor extends AbstractProcessor {
 
             //doc
             if (mJavacTrees != null) {
-                DocCommentTree docCommentTree = mJavacTrees.getDocCommentTree(method);
-                if (docCommentTree != null) {
-                    String doc = Utils.unicode2String(docCommentTree.toString());
-                    if (doc != null) {
-                        builder.addJavadoc(doc);
+                TreePath path = mJavacTrees.getPath((Element) method);
+                if (path != null) {
+                    DocCommentTree docCommentTree = mJavacTrees.getDocCommentTree(path);
+                    if (docCommentTree != null) {
+                        String doc = Utils.unicode2String(docCommentTree.toString());
+                        if (doc != null) {
+                            builder.addJavadoc(doc);
+                        }
                     }
                 }
-
             }
             cls.addMethod(builder.build());
         }
