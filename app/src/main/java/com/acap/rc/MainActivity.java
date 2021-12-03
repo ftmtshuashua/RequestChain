@@ -27,8 +27,9 @@ public class MainActivity extends Activity {
     }
 
     private void run() {
-        MyApiService.getResponseBody()
-                .chain(MyApiService.getModelError())
+        TdApiService.getDevice( "xx", "xx", "cq", "dev", "android")
+//        MyApiService.getResponseBody()
+//                .chain(MyApiService.getModelError())
 //                .chain(MyApiService.getModel())
                 .listener(new OnEventDialog<>(this))
                 .listener(new OnEventLogListener<>("请求日志"))

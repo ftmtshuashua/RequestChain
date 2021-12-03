@@ -269,19 +269,21 @@ public class HttpLogInterceptor implements Interceptor {
 
         try {
             if (body != null) {
-                if (Utils.isPlaintext(body.contentType())) {
-                    String data = body.string();
-                    assemblyBody(logs, data);
-                    mResponse = mResponse.newBuilder().body(ResponseBody.create(data, body.contentType())).build();
-                } else {
-                    logs.add(new PrintLog(LEVEL_BODY, "Exception: Body == null 或者 内容不是Json类型"));
-                }
+                String data = body.string();
+                assemblyBody(logs, data);
+                mResponse = mResponse.newBuilder().body(ResponseBody.create(data, body.contentType())).build();
+//                if (Utils.isPlaintext(mediaType)) {
+//                } else {
+//                    logs.add(new PrintLog(LEVEL_BODY, "Exception: Body == null 或者 内容不是Json类型"));
+//                }
+
             }
         } catch (Throwable e) {
             logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("Exception: {0}", e)));
         }
         return mResponse;
     }
+
 
     //日志装载：JsonBody
     private void assemblyBody(List<PrintLog> logs, String json) {
