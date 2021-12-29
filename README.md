@@ -16,8 +16,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.ftmtshuashua.RequestChain:library:2.0.4'
-    annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:2.0.4'
+    implementation 'com.github.ftmtshuashua.RequestChain:library:2.0.6'
+    annotationProcessor 'com.github.ftmtshuashua.RequestChain:compiler:2.0.6'
 }
 ```
 
@@ -25,8 +25,10 @@ Use
 --------
 
 ```
-// Debug 日志
-RequestChain.setDebug(BuildConfig.DEBUG);
+RequestChain.setDebug(true);    // 启用日志
+RequestChain.setLogTag("API");  // 日志的TAG
+RequestChain.setLogBody(true);  // 显示Body日志，默认 true
+RequestChain.setLogHeader(true);// 显示Header日志，默认 false
 ```
 
 ```
@@ -45,18 +47,13 @@ import retrofit2.Call;
 @ApiUrl("https://getman.cn/") or @ApiVariableUrl(MyVariableUrl.class)
 public interface MyApi {// Build 之后自动生成 MyApiService
 
+    /* 使用 Request */
     @GET("mock/route/to/demo")
-    Request<ResponseBody> getResponseBody();
-    
+    Request<BaseModel<String>> getResponseBody(@Query("arg") String str);
     @GET("mock/route/to/demo")
-    Request<ResponseBody> getResponseBodyWithParams(@QueryMap Map<String, Object> arg);
+    Request<ResponseBody> getModel();
     
-    @GET("mock/acap/api/helloworld")
-    Request<BaseModel<String>> getModel();
-    
-    @GET("/mock/acap/api/helloworld/error")
-    Request<BaseModel<String>> getModelError();
-    
+    /* 使用 Retrofit 原生结果 */
     @GET("mock/route/to/demo")
     Call<ResponseBody> getCall(@Query("arg") String str);
 }
@@ -64,8 +61,7 @@ public interface MyApi {// Build 之后自动生成 MyApiService
 
 ```
 // 使用 API ( EventChain 模式)
-MyApiService.getResponseBody()
-                .chain(MyApiService.getModelError())
+MyApiService.getResponseBody("xx")
                 .chain(MyApiService.getModel())
                 .listener(new OnEventDialog(this))
                 .start();
