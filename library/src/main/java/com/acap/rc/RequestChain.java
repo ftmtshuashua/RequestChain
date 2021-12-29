@@ -1,5 +1,7 @@
 package com.acap.rc;
 
+import com.acap.rc.logs.HttpLogInterceptor;
+
 /**
  * <pre>
  * Tip:
@@ -9,9 +11,10 @@ package com.acap.rc;
  * </pre>
  */
 public class RequestChain {
-    public static final String LOG_TAG = "API";
-
+    private static String LOG_TAG = "API";
     private static boolean IsDebug = false;
+    private static boolean IsLogBody = true;
+    private static boolean IsLogHeader = false;
 
 
     /**
@@ -34,5 +37,34 @@ public class RequestChain {
         return IsDebug;
     }
 
+    /**
+     * 设置日志的Tag
+     */
+    public static void setLogTag(String tag) {
+        LOG_TAG = tag;
+    }
+
+    /**
+     * 设置是否打印 Body 日志 ，默认启用
+     */
+    public static void setLogBody(boolean enable) {
+        IsLogBody = enable;
+    }
+
+    /**
+     * 设置是否打印 Header 日志 ，默认禁用
+     */
+    public static void setLogHeader(boolean enable) {
+        IsLogHeader = enable;
+    }
+
+
+    public static HttpLogInterceptor getLog() {
+        HttpLogInterceptor interceptor = new HttpLogInterceptor(RequestChain.LOG_TAG);
+        interceptor.setEnableLog(isDebug());
+        interceptor.setEnableBodyLog(IsLogBody);
+        interceptor.setEnableHeaderLog(IsLogHeader);
+        return interceptor;
+    }
 
 }

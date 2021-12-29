@@ -52,9 +52,8 @@ public class HttpLogInterceptor implements Interceptor {
     public static final int LEVEL_BODY = 0x1 << 2;
 
 
-    private static final Charset UTF8 = StandardCharsets.UTF_8;
     private final String TAG;
-    private int mLevel = LEVEL_HEADERS | LEVEL_BODY | LEVEL_BASIC;
+    private int mLevel = LEVEL_BASIC | LEVEL_BODY;
 
     //限制Body显示的最大行数
     private final int LIMIT_MAX_BODY_LINES = 30;
@@ -64,6 +63,7 @@ public class HttpLogInterceptor implements Interceptor {
     public HttpLogInterceptor(String TAG) {
         this.TAG = TAG;
     }
+
 
     /**
      * 设置日志启用状态
@@ -127,7 +127,7 @@ public class HttpLogInterceptor implements Interceptor {
      * @return is enable log
      */
     public boolean isLogEnabled() {
-        return RequestChain.isDebug() && (mLevel & LEVEL_BASIC) != 0 && mLogger != null;
+        return (mLevel & LEVEL_BASIC) != 0 && mLogger != null;
     }
 
     private boolean isPrint(int level) {
@@ -137,205 +137,209 @@ public class HttpLogInterceptor implements Interceptor {
         return true;
     }
 
-    /**
-     * 打印日志
-     *
-     * @param level 打印日志的等级
-     * @param msg   日志信息
-     */
+    //打印日志
     private void print(int level, String msg) {
-        if ((mLevel & level) == 0 || !isLogEnabled()) {
-            return;
+        if (isPrint(level)) {
+            print(msg);
         }
+    }
+
+    //打印日志
+    private void print(String msg) {
         if (mLogger != null) {
             mLogger.print(TAG, msg);
         }
     }
 
-    private void print(List<PrintLog> logs) {
+    //合并输出
+    private void print(List<HttpLogMessage> logs) {
         if (logs != null && !logs.isEmpty()) {
             StringBuffer sb = new StringBuffer(" \n");
             if (isPrint(LEVEL_BASIC)) sb.append("╔═══════════════════════════════════════════════════\n");
-            for (PrintLog log : logs) {
-                if (isPrint(log.mLevel)) sb.append("║ ").append(log.mMsg).append("\n");
+            for (HttpLogMessage log : logs) {
+                if (isPrint(log.mLevel)) {
+                    if ((sb.length() + log.mMsg.length()) >= 4000) {
+                        print(sb.toString());
+                        sb = new StringBuffer(" \n");
+                    }
+                    sb.append("║ ").append(log.mMsg).append("\n");
+                }
             }
             if (isPrint(LEVEL_BASIC)) sb.append("╚═══════════════════════════════════════════════════\n");
 
-            if (mLogger != null) {
-                mLogger.print(TAG, sb.toString());
-            }
+            print(sb.toString());
         }
     }
 
-    //日志输出
-    private void print2(List<PrintLog> logs) {
+    //拆分输出
+    private void print2(List<HttpLogMessage> logs) {
         if (logs != null && !logs.isEmpty()) {
             print(LEVEL_BASIC, "╔═══════════════════════════════════════════════════");
-            for (PrintLog log : logs) {
+            for (HttpLogMessage log : logs) {
                 print(log.mLevel, "║ " + log.mMsg);
             }
             print(LEVEL_BASIC, "╚═══════════════════════════════════════════════════");
         }
     }
 
-
     @NotNull
     public Response intercept(@NotNull Chain chain) throws IOException {
-        Request request = chain.request();
         //如果不显示日志，则直接跳过
         if (!isLogEnabled()) {
-            return chain.proceed(request);
+            return chain.proceed(chain.request());
         }
 
+        Request request = chain.request();
 
         print(LEVEL_BASIC, MessageFormat.format("--> {0} Start {1}", request.method(), request.url()));
 
-        List<PrintLog> logs = new ArrayList<>();
-        assemblyRequest(logs, chain);
+        List<HttpLogMessage> logs = new ArrayList<>();
+        mUtils.printRequest(logs, chain);
 
         long startNs = System.nanoTime(); //请求的开始时间
         Response mResponse;
         try {
             mResponse = chain.proceed(request);
+            mResponse = mUtils.printResponse(logs, chain, mResponse, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs));
         } catch (Throwable e) {
-            assemblyError(logs, chain, e, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs));
-            print(logs);
+            mUtils.printError(logs, chain, e, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs));
             throw e;
+        } finally {
+            print(logs);
         }
-        mResponse = assemblyResponse(logs, chain, mResponse, TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs));
-        print(logs);
+
         return mResponse;
     }
 
-    //日志装载：请求
-    private void assemblyRequest(List<PrintLog> logs, Chain chain) {
-        Request request = chain.request();
-        Headers headers = request.headers();
-        RequestBody requestBody = request.body();
+    private final Utils mUtils = new Utils();
 
-        logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("{0}  {1}  {2}", request.method(), Utils.getProtocol(chain), Utils.getUrl(request))));
-        for (int i = 0, size = headers.size(); i < size; i++) {
-            logs.add(new PrintLog(LEVEL_HEADERS, MessageFormat.format("{0}: {1}", headers.name(i), headers.value(i))));
-        }
+    private class Utils {
+        private final Charset UTF8 = StandardCharsets.UTF_8;
 
-        try {
-            if (requestBody != null) {
-                Request build = request.newBuilder().build();
-                RequestBody buildBody = build.body();
+        //日志装载：请求
+        private void printRequest(List<HttpLogMessage> logs, Chain chain) {
+            Request request = chain.request();
+            Headers headers = request.headers();
+            RequestBody requestBody = request.body();
 
-                String data;
-                Buffer buffer = new Buffer();
-                Charset mCharset = null;
+            logs.add(new HttpLogMessage(LEVEL_BASIC, MessageFormat.format("{0}  {1}  {2}", request.method(), getProtocol(chain), getUrl(request))));
 
-                if (buildBody != null) {
-                    buildBody.writeTo(buffer);
-                    MediaType mediaType = buildBody.contentType();
-                    if (mediaType != null) {
-                        mCharset = mediaType.charset(UTF8);
-                    }
+            if ((mLevel & LEVEL_HEADERS) != 0) {
+                for (int i = 0, size = headers.size(); i < size; i++) {
+                    logs.add(new HttpLogMessage(LEVEL_HEADERS, MessageFormat.format("{0}: {1}", headers.name(i), headers.value(i))));
                 }
-                if (mCharset == null) mCharset = UTF8;
-                data = buffer.readString(mCharset);
-
-                assemblyBody(logs, data);
             }
-        } catch (Throwable e) {
-            logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("Exception: {0}", e)));
-            logs.add(new PrintLog(LEVEL_BASIC, ""));
-        }
-    }
+            if ((mLevel & LEVEL_BODY) != 0) {
+                try {
+                    if (requestBody != null) {
+                        Request build = request.newBuilder().build();
+                        RequestBody buildBody = build.body();
 
-    //日志装载：异常
-    private void assemblyError(List<PrintLog> logs, Chain chain, Throwable e, long elapsed) {
-        Request request = chain.request();
-        logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("END OF  --->>> {0} Request 耗时({1}ms)", request.method(), elapsed)));
-        logs.add(new PrintLog(LEVEL_BASIC, ""));
-        logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("Exception: {0}", e)));
-    }
+                        String data;
+                        Buffer buffer = new Buffer();
+                        Charset mCharset = null;
 
-    //日志装载：结果
-    private Response assemblyResponse(List<PrintLog> logs, Chain chain, Response mResponse, long elapsed) {
-        Request request = chain.request();
-        Response clone = mResponse.newBuilder().build(); //克隆的请求结果
-        Headers headers = clone.headers();
-        ResponseBody body = clone.body();
+                        if (buildBody != null) {
+                            buildBody.writeTo(buffer);
+                            MediaType mediaType = buildBody.contentType();
+                            if (mediaType != null) {
+                                mCharset = mediaType.charset(UTF8);
+                            }
+                        }
+                        if (mCharset == null) mCharset = UTF8;
+                        data = buffer.readString(mCharset);
 
-        logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("END OF  --->>> {0} Request", request.method())));
-        logs.add(new PrintLog(LEVEL_BASIC, ""));
-        logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("Response Code={0} {1} 耗时({2,number,0}ms)", clone.code(), clone.message(), elapsed)));
-        for (int i = 0, size = headers.size(); i < size; i++) {
-            logs.add(new PrintLog(LEVEL_HEADERS, MessageFormat.format("{0}: {1}", headers.name(i), headers.value(i))));
-        }
-
-        try {
-            if (body != null) {
-                String data = body.string();
-                assemblyBody(logs, data);
-                mResponse = mResponse.newBuilder().body(ResponseBody.create(data, body.contentType())).build();
-//                if (Utils.isPlaintext(mediaType)) {
-//                } else {
-//                    logs.add(new PrintLog(LEVEL_BODY, "Exception: Body == null 或者 内容不是Json类型"));
-//                }
-
+                        printBody(logs, data);
+                    }
+                } catch (Throwable e) {
+                    logs.add(new HttpLogMessage(LEVEL_BASIC, MessageFormat.format("Body parser error >>> {0}", e)));
+                    logs.add(new HttpLogMessage(LEVEL_BASIC, ""));
+                }
             }
-        } catch (Throwable e) {
-            logs.add(new PrintLog(LEVEL_BASIC, MessageFormat.format("Exception: {0}", e)));
-        }
-        return mResponse;
-    }
-
-
-    //日志装载：JsonBody
-    private void assemblyBody(List<PrintLog> logs, String json) {
-        String LINE_SEPARATOR = System.getProperty("line.separator");
-        if (LINE_SEPARATOR == null) {
-            LINE_SEPARATOR = "\n";
         }
 
-        String message;
-        try {
-            if (json.startsWith("{")) {
-                message = new JSONObject(json).toString(4);
-            } else if (json.startsWith("[")) {
-                message = new JSONArray(json).toString(4);
-            } else {
+        //日志装载：异常
+        private void printError(List<HttpLogMessage> logs, Chain chain, Throwable e, long elapsed) {
+            Request request = chain.request();
+            logs.add(new HttpLogMessage(LEVEL_BASIC, MessageFormat.format("<END OF  {0} Request 耗时({1}ms)>", request.method(), elapsed)));
+            logs.add(new HttpLogMessage(LEVEL_BASIC, ""));
+            logs.add(new HttpLogMessage(LEVEL_BASIC, MessageFormat.format("Error >>> {0}", e)));
+        }
+
+        //日志装载：结果
+        private Response printResponse(List<HttpLogMessage> logs, Chain chain, Response mResponse, long elapsed) {
+            Request request = chain.request();
+            Response clone = mResponse.newBuilder().build(); //克隆的请求结果
+            Headers headers = clone.headers();
+            ResponseBody body = clone.body();
+
+            logs.add(new HttpLogMessage(LEVEL_BASIC, MessageFormat.format("<END OF {0} Request>", request.method())));
+            logs.add(new HttpLogMessage(LEVEL_BASIC, ""));
+            logs.add(new HttpLogMessage(LEVEL_BASIC, MessageFormat.format("Response Code={0} {1} 耗时({2,number,0}ms)", clone.code(), clone.message(), elapsed)));
+            if ((mLevel & LEVEL_HEADERS) != 0) {
+                for (int i = 0, size = headers.size(); i < size; i++) {
+                    logs.add(new HttpLogMessage(LEVEL_HEADERS, MessageFormat.format("{0}: {1}", headers.name(i), headers.value(i))));
+                }
+            }
+            if ((mLevel & LEVEL_BODY) != 0) {
+                try {
+                    if (body != null) {
+                        if (isPlaintext(body.contentType())) {
+                            String data = body.string();
+                            printBody(logs, data);
+                            mResponse = mResponse.newBuilder().body(ResponseBody.create(data, body.contentType())).build();
+                        } else {
+                            logs.add(new HttpLogMessage(LEVEL_BODY, "Body parser error >>> Body == null or Contents not printable"));
+                        }
+                    }
+                } catch (Throwable e) {
+                    logs.add(new HttpLogMessage(LEVEL_BASIC, MessageFormat.format("Body parser error >>> {0}", e)));
+                }
+            }
+            return mResponse;
+        }
+
+        //日志装载：JsonBody
+        private void printBody(List<HttpLogMessage> logs, String json) {
+            if (json.length() <= 100) {
+                //内容太短,没必要格式化
+                logs.add(new HttpLogMessage(LEVEL_BODY, json));
+                return;
+            }
+
+            String LINE_SEPARATOR = System.getProperty("line.separator");
+            if (LINE_SEPARATOR == null) {
+                LINE_SEPARATOR = "\n";
+            }
+
+            String message;
+            try {
+                if (json.startsWith("{")) {
+                    message = new JSONObject(json).toString(4);
+                } else if (json.startsWith("[")) {
+                    message = new JSONArray(json).toString(4);
+                } else {
+                    message = json;
+                }
+            } catch (Throwable e) {
                 message = json;
             }
-        } catch (Throwable e) {
-            message = json;
-        }
 
-        if (!TextUtils.isEmpty(message)) {
-            String[] split = message.split(LINE_SEPARATOR);
-            for (int i = 0; i < split.length; i++) {
-                logs.add(new PrintLog(LEVEL_BODY, split[i]));
-                if (i > LIMIT_MAX_BODY_LINES) {
-                    logs.add(new PrintLog(LEVEL_BODY, "..."));
-                    break;
+            if (!TextUtils.isEmpty(message)) {
+                String[] split = message.split(LINE_SEPARATOR);
+                for (int i = 0; i < split.length; i++) {
+                    logs.add(new HttpLogMessage(LEVEL_BODY, split[i]));
+                    if (i > LIMIT_MAX_BODY_LINES) {
+                        logs.add(new HttpLogMessage(LEVEL_BODY, "..."));
+                        break;
+                    }
                 }
             }
+
         }
-
-    }
-
-
-    //输出的日志
-    private static final class PrintLog {
-        //日志等级
-        private final int mLevel;
-        //日志消息
-        private final String mMsg;
-
-        public PrintLog(int mLevel, String mMsg) {
-            this.mLevel = mLevel;
-            this.mMsg = mMsg;
-        }
-    }
-
-    private static final class Utils {
 
         //获得请求协议版本
-        public static Protocol getProtocol(Chain chain) {
+        public Protocol getProtocol(Chain chain) {
             Connection connection = chain.connection();
             if (connection == null) {
                 return Protocol.HTTP_1_1;
@@ -343,14 +347,13 @@ public class HttpLogInterceptor implements Interceptor {
             return connection.protocol();
         }
 
-
-        public static String getUrl(Request request) {
+        public String getUrl(Request request) {
             return request.url().toString();
         }
 
         //判断是否为可打印的文本
-        public static boolean isPlaintext(MediaType mediaType) {
-            if (mediaType == null) {
+        public boolean isPlaintext(MediaType mediaType) {
+            /*if (mediaType == null) {
                 return false;
             }
             String type = mediaType.type();
@@ -362,7 +365,8 @@ public class HttpLogInterceptor implements Interceptor {
             return subtype.contains("x-www-form-urlencoded") ||
                     subtype.contains("json") ||
                     subtype.contains("xml") ||
-                    subtype.contains("html");
+                    subtype.contains("html");*/
+            return true;
         }
     }
 }

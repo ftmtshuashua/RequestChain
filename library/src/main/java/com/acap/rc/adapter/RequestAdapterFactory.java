@@ -3,8 +3,6 @@ package com.acap.rc.adapter;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.CallAdapter;
 import retrofit2.Retrofit;
@@ -21,7 +19,7 @@ import retrofit2.Retrofit;
  */
 public class RequestAdapterFactory extends CallAdapter.Factory {
 
-    private Map<Type, RequestAdapter> mCache;
+//    private Map<Type, RequestAdapter> mCache;
 
     @Override
     public CallAdapter<?, ?> get(Type returnType, Annotation[] annotations, Retrofit retrofit) {
@@ -32,6 +30,7 @@ public class RequestAdapterFactory extends CallAdapter.Factory {
     }
 
     private RequestAdapter get(Type innerType) {
+        /*
         if (mCache == null) {
             mCache = new HashMap<>();
         }
@@ -40,6 +39,7 @@ public class RequestAdapterFactory extends CallAdapter.Factory {
             rcAdapter = new RequestAdapter(innerType);
             mCache.put(innerType, rcAdapter);
         }
-        return rcAdapter;
+        return rcAdapter;*/
+        return new RequestAdapter(innerType);
     }
 }

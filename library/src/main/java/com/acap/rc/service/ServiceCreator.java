@@ -77,7 +77,7 @@ public final class ServiceCreator {
     private OkHttpClient.Builder builderOkHttp(Class<? extends OkHttpConfig> config) throws InstantiationException, IllegalAccessException {
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         if (RequestChain.isDebug()) {
-            builder.addInterceptor(new HttpLogInterceptor(RequestChain.LOG_TAG));
+            builder.addInterceptor(RequestChain.getLog());
         }
         config.newInstance().builder(builder);
         return builder;

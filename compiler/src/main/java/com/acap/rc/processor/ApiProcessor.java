@@ -99,13 +99,17 @@ public class ApiProcessor extends AbstractProcessor {
     }
 
     private final String mUrlFieldName = "mUrl";
-    private final String mServiceMethodName = "getService";
+    private final String mServiceMethodName = "get";
 
     private TypeSpec.Builder getClassBuilder(Element element) {
         TypeSpec.Builder cls = TypeSpec.classBuilder(getGenerateClassName(element));
         cls.addModifiers(Modifier.FINAL, Modifier.PUBLIC);
         cls.addMethod(MethodSpec.constructorBuilder().addModifiers(Modifier.PRIVATE).build());
-        cls.addMethod(MethodSpec.methodBuilder(mServiceMethodName).returns(Utils.getType(element)).addModifiers(Modifier.PRIVATE, Modifier.STATIC).addStatement("return $T.getAndCreate($T.class, $L, $T.class, $T.class)", ServiceCreator.class, Utils.getType(element), mUrlFieldName, getOKConfig(element), getRtConfig(element)).build());
+        cls.addMethod(MethodSpec.methodBuilder(mServiceMethodName)
+                .returns(Utils.getType(element))
+                .addModifiers(Modifier.PUBLIC, Modifier.STATIC)
+                .addStatement("return $T.getAndCreate($T.class, $L, $T.class, $T.class)", ServiceCreator.class, Utils.getType(element), mUrlFieldName, getOKConfig(element), getRtConfig(element))
+                .build());
 
         List<ExecutableElement> methods = Utils.getMethods(mElements, element);
         for (ExecutableElement method : methods) {
