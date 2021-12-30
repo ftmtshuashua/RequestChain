@@ -79,6 +79,8 @@ public class RequestChain {
         interceptor.setEnableLog(isDebug());
         interceptor.setEnableBodyLog(IsLogBody);
         interceptor.setEnableHeaderLog(IsLogHeader);
+        interceptor.setFormatBody(IsFormatBody);
+        interceptor.setFormatBodyMaxLine(IsFormatBodyMaxLine);
         return interceptor;
     }
 
