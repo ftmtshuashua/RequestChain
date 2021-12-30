@@ -29,6 +29,8 @@ RequestChain.setDebug(true);    // 启用日志
 RequestChain.setLogTag("API");  // 日志的TAG
 RequestChain.setLogBody(true);  // 显示Body日志，默认 true
 RequestChain.setLogHeader(true);// 显示Header日志，默认 false
+RequestChain.setFormatBody(true);       // 启用格式化Body，默认 true
+RequestChain.setFormatBodyMaxLine(30);  // 格式化Body的最大显示行数,默认30行
 ```
 
 ```
