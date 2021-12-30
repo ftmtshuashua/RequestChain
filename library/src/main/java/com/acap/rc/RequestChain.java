@@ -15,7 +15,8 @@ public class RequestChain {
     private static boolean IsDebug = false;
     private static boolean IsLogBody = true;
     private static boolean IsLogHeader = false;
-
+    private static boolean IsFormatBody = true;
+    private static int IsFormatBodyMaxLine = 30;
 
     /**
      * 设置 RequestChain 的 Debug 模式
@@ -56,6 +57,20 @@ public class RequestChain {
      */
     public static void setLogHeader(boolean enable) {
         IsLogHeader = enable;
+    }
+
+    /**
+     * 设置是否是格式化Body , 默认启用
+     */
+    public static void setFormatBody(boolean enable) {
+        IsFormatBody = enable;
+    }
+
+    /**
+     * 设置格式化Body的最大显示行数
+     */
+    public static void setFormatBodyMaxLine(int line) {
+        IsFormatBodyMaxLine = line;
     }
 
 

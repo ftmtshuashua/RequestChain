@@ -3,8 +3,6 @@ package com.acap.rc.logs;
 import android.text.TextUtils;
 import android.util.Log;
 
-import com.acap.rc.RequestChain;
-
 import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -56,7 +54,9 @@ public class HttpLogInterceptor implements Interceptor {
     private int mLevel = LEVEL_BASIC | LEVEL_BODY;
 
     //限制Body显示的最大行数
-    private final int LIMIT_MAX_BODY_LINES = 30;
+    private int mFormatBodyMaxLine = 30;
+    private boolean mFormatBodyEnable = true;
+
 
     private HttpLogger mLogger = Log::i;
 
@@ -120,6 +120,23 @@ public class HttpLogInterceptor implements Interceptor {
         mLogger = logger;
         return this;
     }
+
+    /**
+     * 设置是否是格式化Body
+     */
+    public HttpLogInterceptor setFormatBody(boolean enable) {
+        mFormatBodyEnable = enable;
+        return this;
+    }
+
+    /**
+     * 设置格式化Body的最大显示行数
+     */
+    public HttpLogInterceptor setFormatBodyMaxLine(int line) {
+        mFormatBodyMaxLine = line;
+        return this;
+    }
+
 
     /**
      * 判断是否启用日志
@@ -301,6 +318,10 @@ public class HttpLogInterceptor implements Interceptor {
 
         //日志装载：JsonBody
         private void printBody(List<HttpLogMessage> logs, String json) {
+            if (!mFormatBodyEnable) {
+                logs.add(new HttpLogMessage(LEVEL_BODY, json));
+                return;
+            }
             if (json.length() <= 100) {
                 //内容太短,没必要格式化
                 logs.add(new HttpLogMessage(LEVEL_BODY, json));
@@ -329,7 +350,7 @@ public class HttpLogInterceptor implements Interceptor {
                 String[] split = message.split(LINE_SEPARATOR);
                 for (int i = 0; i < split.length; i++) {
                     logs.add(new HttpLogMessage(LEVEL_BODY, split[i]));
-                    if (i > LIMIT_MAX_BODY_LINES) {
+                    if (i > mFormatBodyMaxLine) {
                         logs.add(new HttpLogMessage(LEVEL_BODY, "..."));
                         break;
                     }
