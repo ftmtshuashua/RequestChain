@@ -10,10 +10,16 @@ import com.acap.rc.annotation.service.DefaultRetrofitConfig;
 import com.acap.rc.annotation.service.SimpleVariableUrl;
 import com.acap.rc.annotation.service.VariableUrl;
 import com.acap.rc.service.ServiceCreator;
+import com.squareup.javapoet.AnnotationSpec;
+import com.squareup.javapoet.ClassName;
 import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.JavaFile;
 import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.ParameterizedTypeName;
+import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
+import com.squareup.javapoet.TypeVariableName;
+import com.squareup.javapoet.WildcardTypeName;
 import com.sun.source.doctree.DocCommentTree;
 import com.sun.source.util.TreePath;
 import com.sun.tools.javac.api.JavacTrees;
@@ -119,7 +125,6 @@ public class ApiProcessor extends AbstractProcessor {
             }
             MethodSpec.Builder builder = MethodSpec.methodBuilder(methodName);
             builder.addModifiers(Modifier.PUBLIC, Modifier.STATIC);
-            builder.returns(Utils.getType(method.getReturnType()));
 
             //args
             StringBuilder parameters = new StringBuilder();
@@ -131,8 +136,28 @@ public class ApiProcessor extends AbstractProcessor {
             if (parameters.length() > 0) {
                 parameters.deleteCharAt(0);
             }
-            builder.addStatement("return $L().$L($L)", mServiceMethodName, methodName, parameters.toString());
 
+
+            //result
+            TypeName returns = Utils.getType(method.getReturnType());
+
+            ParameterizedTypeName type_result = null;
+            if (returns.toString().startsWith("com.acap.rc.adapter.Request")) {
+                TypeVariableName cls_t = TypeVariableName.get("T");
+                ClassName cls_event = ClassName.get("com.acap.ec", "Event");
+                type_result = ParameterizedTypeName.get(cls_event, cls_t, ((ParameterizedTypeName) returns).typeArguments.get(0));
+                builder.addTypeVariable(cls_t);
+                builder.returns(type_result);
+                builder.addAnnotation(AnnotationSpec.builder(SuppressWarnings.class).addMember("value", "\"unchecked\"").build());
+            } else {
+                builder.returns(returns);
+            }
+            //Body
+            if (type_result != null) {
+                builder.addStatement("return ($T) $L().$L($L)", type_result, mServiceMethodName, methodName, parameters.toString());
+            } else {
+                builder.addStatement("return $L().$L($L)", mServiceMethodName, methodName, parameters.toString());
+            }
             //doc
             if (mJavacTrees != null) {
                 TreePath path = mJavacTrees.getPath((Element) method);
