@@ -1,6 +1,7 @@
 package com.acap.rc.adapter;
 
 import com.acap.ec.BaseEvent;
+import com.acap.ec.Event;
 import com.acap.rc.schedulers.RequestThreadHelper;
 
 import retrofit2.Call;
@@ -57,4 +58,14 @@ public class Request<T> extends BaseEvent<Object, T> implements Callback<T> {
         RequestThreadHelper.main(() -> error(t));
     }
 
+    /**
+     * 转换为Event对象。由于Request的入参固定为Object，导致某些时候必须进行强转，极其不便。使用该方法可以直接将Request对象强转为不关心入参的Event对象。
+     *
+     * @param <R> Request 对象不关心入参的类型
+     * @return Event对象
+     */
+    @SuppressWarnings("unchecked")
+    public <R> Event<R, T> toEvent() {
+        return (Event<R, T>) this;
+    }
 }

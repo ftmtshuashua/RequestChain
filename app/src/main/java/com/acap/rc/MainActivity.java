@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 
     private void run() {
         MyApiService.getResponseBody()
-                .lazy(params -> MyApiService.getModelError()) //延迟初始化,可利用前一个事件的返回值创建当前事件
+                .lazy(params -> MyApiService.getModelError().toEvent()) //延迟初始化,可利用前一个事件的返回值创建当前事件
                 .chain(MyApiService.getModelError())
 //                .chain(MyApiService.getModel())
                 .listener(new OnEventDialog<>(this))  //监听事件的开始与结束

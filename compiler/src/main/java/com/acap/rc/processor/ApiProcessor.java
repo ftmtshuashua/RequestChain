@@ -141,23 +141,23 @@ public class ApiProcessor extends AbstractProcessor {
             //result
             TypeName returns = Utils.getType(method.getReturnType());
 
-            ParameterizedTypeName type_result = null;
-            if (returns.toString().startsWith("com.acap.rc.adapter.Request")) {
+           /* if (returns.toString().startsWith("com.acap.rc.adapter.Request")) {
                 TypeVariableName cls_t = TypeVariableName.get("T");
                 ClassName cls_event = ClassName.get("com.acap.ec", "Event");
-                type_result = ParameterizedTypeName.get(cls_event, cls_t, ((ParameterizedTypeName) returns).typeArguments.get(0));
+                ParameterizedTypeName   type_result = ParameterizedTypeName.get(cls_event, cls_t, ((ParameterizedTypeName) returns).typeArguments.get(0));
                 builder.addTypeVariable(cls_t);
                 builder.returns(type_result);
                 builder.addAnnotation(AnnotationSpec.builder(SuppressWarnings.class).addMember("value", "\"unchecked\"").build());
-            } else {
-                builder.returns(returns);
-            }
-            //Body
-            if (type_result != null) {
+
                 builder.addStatement("return ($T) $L().$L($L)", type_result, mServiceMethodName, methodName, parameters.toString());
             } else {
+                builder.returns(returns);
                 builder.addStatement("return $L().$L($L)", mServiceMethodName, methodName, parameters.toString());
-            }
+            }*/
+
+            builder.returns(returns);
+            builder.addStatement("return $L().$L($L)", mServiceMethodName, methodName, parameters.toString());
+
             //doc
             if (mJavacTrees != null) {
                 TreePath path = mJavacTrees.getPath((Element) method);
